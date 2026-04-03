@@ -15,3 +15,20 @@ Stockholm International Peace Research Institute (2025) – with minor processin
 
 **Originele bron:**
 https://www.sipri.org/databases/milex
+
+
+
+## website
+Our website is built with react and managed using npm.
+
+### install dependencies
+To install all needed dependencies, run:
+```
+npm install
+```
+
+### run
+To run the website while developping, run:
+```
+npm run dev
+```
