@@ -47,12 +47,9 @@ def clean_csv(data):
     if CODE_COL in data.columns:
         data = data.drop(columns=[CODE_COL])
 
-    # TODO: check what this (SIPRI) means and if it is important for our analysis, if not we can remove it from the country names
-    # Some country names have (SIPRI) in them, we want to remove that
-    # These are likely duplicates/aggregated data for the same country, but we should check if there are any differences in the data for these countries before removing it
-    if COUNTRY_COL in data.columns:
-        data[COUNTRY_COL] = data[COUNTRY_COL].str.replace(' (SIPRI)', '')
-
+    # Some country names have (SIPRI) in them, we want to remove those rows because these are aggregate data for regions, not individual countries
+    data = data[~data[COUNTRY_COL].str.contains("SIPRI", na=False)]
+    
     return data
 
 
