@@ -1,0 +1,13 @@
+
+.line-plot-container {
+    /* Put ref div in horizontal center of page*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin-top: 70px; /* Add some space between the top of the page and the container of the line plot */
+}
+
+.line-plot {
+    margin-top: 20px; /* Add some space between the title and the plot */
+}
