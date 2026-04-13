@@ -1,7 +1,11 @@
 import * as Plot from "npm:@observablehq/plot";
 
-const formatMoney = (value) => {
+const formatValue = (value, type) => {
   if (value == null || isNaN(value)) return "No data";
+
+  if (type === "govt" || type === "gdp") {
+    return `${value}%`;
+  }
 
   return (
     new Intl.NumberFormat("en-US", {
@@ -9,6 +13,20 @@ const formatMoney = (value) => {
       maximumFractionDigits: 1,
     }).format(value) + " USD"
   );
+};
+
+const colorMap = {
+  absolute: ["log", 1],
+  capita: ["linear", 0],
+  govt: ["linear", 0],
+  gdp: ["linear", 0],
+};
+
+const labelMap = {
+  absolute: "Military expenditure in constant 2023 USD (logarithmic scale)",
+  capita: "Military spending per capita",
+  govt: "Share of government spending",
+  gdp: "Share of Gross Domestic Product",
 };
 
 export function spendingsMap(
@@ -47,7 +65,7 @@ export function spendingsMap(
             title: (d) => {
               const countryName = d.properties.name;
               const value = access_year.get(geoToEntityMap[countryName]);
-              return `${countryName} (${formatMoney(value) ?? "unknown"})`;
+              return `${countryName} (${formatValue(value, mode) ?? "unknown"})`;
             },
             anchor: "bottom",
             textPadding: 3,
@@ -56,11 +74,16 @@ export function spendingsMap(
       ),
     ],
     color: {
-      type: "log",
-      domain: [1, maxExpenditure],
+      type: colorMap[mode][0],
+      domain: [colorMap[mode][1], maxExpenditure],
       scheme: "blues",
-      label: "Military expenditure (USD)",
+      label: labelMap[mode],
       unknown: "var(--theme-foreground-muted)",
+      legend: true,
+      tickFormat: (d) =>
+        `${formatValue(d, mode)}`,
+      ticks: 3
+
     },
   });
 }

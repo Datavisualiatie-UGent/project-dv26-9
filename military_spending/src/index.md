@@ -4,7 +4,7 @@ theme: "ocean-floor"
 ---
 
 <div class="hero">
-  <h1>military-spendings</h1>
+  <h1>Military spendings around the world</h1>
 </div>
 
 ```js
@@ -29,6 +29,23 @@ const capitaData = await FileAttachment("data/capita.csv").csv({ typed: true });
 ```
 
 ```js
+const govtData = await FileAttachment("data/govt.csv").csv({ typed: true });
+```
+
+```js
+const gdpData = await FileAttachment("data/gdp.csv").csv({ typed: true });
+```
+
+```js
+const dataMap = {
+  Absolute: await absoluteData,
+  Capita: capitaData,
+  Govt: govtData,
+  Gdp: gdpData,
+};
+```
+
+```js
 const countriesGeo = await FileAttachment("data/countries.geo.json").json();
 const countries = topojson.feature(
   countriesGeo,
@@ -37,8 +54,14 @@ const countries = topojson.feature(
 ```
 
 ```js
+const rotationState = {
+  current: [0, 0, 0],
+};
+```
+
+```js
 const dataType = view(
-  Inputs.select(["Absolute", "Capita"], {
+  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
     value: "Absolute",
   }),
 );
@@ -76,10 +99,10 @@ function render(width) {
     access_year,
     geoToEntityMap,
     maxExpenditure,
-    "",
+    dataType.toLowerCase(),
     mapType,
     width,
-    rotation,
+    rotationState.current,
   );
 
   container.innerHTML = "";
@@ -104,12 +127,16 @@ window.addEventListener("mousemove", (e) => {
 
   const dx = e.clientX - lastX;
   lastX = e.clientX;
-  rotation[0] += dx * 0.5;
+  rotationState.current[0] += dx * 0.5;
 
   if (mapType === "Globe") {
     const dy = e.clientY - lastY;
     lastY = e.clientY;
-     rotation[1] = clamp(rotation[1] - dy * 0.3, -60, 60);
+    rotationState.current[1] = clamp(
+      rotationState.current[1] - dy * 0.3,
+      -60,
+      60,
+    );
   }
 
   scheduleRender(container.clientWidth);
@@ -122,7 +149,7 @@ window.addEventListener("mousemove", (e) => {
   width: 100%;
   margin: 2rem 0;
 ">
-  <div style="width: 100%; max-width: 1200px;">
+  <div class="map-container">
     ${
       resize((width) => {
         render(width);
@@ -136,6 +163,8 @@ window.addEventListener("mousemove", (e) => {
 const rangeMap = {
   absolute: [1949, 2024],
   capita: [1988, 2024],
+  govt: [1988, 2024],
+  gdp: [1949, 2024]
 };
 const year = view(
   Inputs.range(rangeMap[dataType.toLowerCase()], {
@@ -147,7 +176,7 @@ const year = view(
 ```
 
 ```js
-const selectedData = dataType === "Capita" ? capitaData : absoluteData;
+const selectedData = dataMap[dataType];
 const dataForYear = selectedData.filter((d) => d.Year === year);
 const access_year = new Map(
   dataForYear.map(({ Entity, Military_expenditure }) => [
@@ -184,6 +213,19 @@ const geoToEntityMap = (() => {
 ---
 
 <style>
+
+.map-container {
+  width: 100%;
+  max-width: 1200px;"
+}
+
+.map-container path {
+  cursor: auto;
+}
+
+.map-container:hover {
+  cursor: grab;
+}
 
 .hero {
   display: flex;
