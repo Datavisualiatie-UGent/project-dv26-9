@@ -3,12 +3,17 @@ import WorldMap from "./WorldMap";
 import Slider from "./Slider";
 import Select from "react-select";
 import { useWorldMap } from "../contexts/WorldMapContext";
-import { useMemo, useState } from "react";
+import { use, useMemo, useState } from "react";
 
 const modeOptions = [
   { value: "absolute", label: "Constant (2024) USD" },
   { value: "capita", label: "Per Capita" },
 ];
+
+const viewOptions = [
+    { value: "equirectangular", label: "map" },
+    { value: "orthographic", label: "globe" },
+]
 
 const yearRangeMap = {
   absolute: [1949, 2024],
@@ -20,6 +25,7 @@ export default function InteractiveWorldMap() {
     useWorldMap();
   const [year, setYear] = useState(2024);
   const [mode, setMode] = useState("absolute");
+  const [view, setView] = useState(viewOptions[0].value);
 
   const dataForYear = useMemo(() => {
     return absoluteData.filter((d) => d.Year === year);
@@ -59,12 +65,20 @@ export default function InteractiveWorldMap() {
   return (
     <div className="world-map-container">
       <div className="options-container">
-        <h2 className="select-label">Display type</h2>
+        <h2 className="select-label">Data type</h2>
         <div className="select-container">
           <Select
             defaultValue={modeOptions[0]}
             options={modeOptions}
             onChange={(v) => setModeSafe(v.value)}
+          />
+        </div>
+        <h2 className="select-label">View type</h2>
+        <div className="select-container">
+          <Select
+            defaultValue={viewOptions[0]}
+            options={viewOptions}
+            onChange={(v) => setView(v.value)}
           />
         </div>
       </div>
@@ -75,6 +89,7 @@ export default function InteractiveWorldMap() {
         maxExpenditure={maxExpenditure}
         year={year}
         mode={mode}
+        view={view}
       />
       <div className="slider-container">
         <Slider

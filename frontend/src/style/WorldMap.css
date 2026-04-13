@@ -16,6 +16,11 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    margin: 20px 0px 10px 0px;
+}
+
+.world-map:hover {
+    cursor: grab;
 }
 
 .options-container {
