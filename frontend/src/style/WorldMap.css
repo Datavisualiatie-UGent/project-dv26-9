@@ -42,3 +42,7 @@
 .select-container {
     flex: 1;
 }
+
+.select-label {
+    margin: 0 50px 4px 0;
+}

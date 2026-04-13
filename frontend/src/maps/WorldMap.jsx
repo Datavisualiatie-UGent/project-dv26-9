@@ -2,7 +2,6 @@ import * as Plot from "@observablehq/plot";
 import { useEffect, useRef } from "react";
 import "../style/WorldMap.css";
 import { formatMoney } from "../utils";
-import * as d3 from "d3";
 
 const unknownColor = "rgb(73, 73, 73)";
 
@@ -22,12 +21,16 @@ function WorldMap({
   const ref = useRef();
 
   useEffect(() => {
+    if (!countries.length) return;
     const width = ref.current.clientWidth || 800;
     const height = ref.current.clientHeight || 500;
 
+    const colorType = modeToColorMap[mode][0];
+    const colorDomain = modeToColorMap[mode][1];
+
     async function loadAndRender() {
       const map = Plot.plot({
-        projection: { type: "equirectangular", scale: 5},
+        projection: { type: "equirectangular"},
         marks: [
           Plot.geo(countries, {
             pointerEvents: "all",
@@ -58,11 +61,10 @@ function WorldMap({
           ),
         ],
         color: {
-          type: modeToColorMap[mode][0],
+          type: colorType,
           base: 10,
-          domain: [modeToColorMap[mode][1], maxExpenditure],
+          domain: [colorDomain, maxExpenditure],
           scheme: "Viridis",
-          label: "Military expenditure (USD)",
           unknown: unknownColor,
         },
         width,
