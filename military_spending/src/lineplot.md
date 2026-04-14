@@ -1,5 +1,5 @@
 ---
-name: "Interactive Lineplot"
+title: "Interactive Lineplot"
 toc: false
 theme: "ocean-floor"
 ---

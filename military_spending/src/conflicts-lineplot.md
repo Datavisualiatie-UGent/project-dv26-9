@@ -1,5 +1,5 @@
 ---
-name: "Conflicts"
+title: "Conflicts"
 toc: false
 theme: "ocean-floor"
 ---
