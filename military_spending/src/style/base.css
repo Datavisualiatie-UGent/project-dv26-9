@@ -39,10 +39,20 @@
 
 .container-base {
   width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
   margin: 2rem 0;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+.container-base figure {
+  width: 100%;
+  margin: 0;
+}
+
+.container-base svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 

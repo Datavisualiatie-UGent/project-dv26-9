@@ -66,12 +66,6 @@ const conflicts = [
     end: 1988
   },
   {
-    name: "Yom Kippur War",
-    countries: ["Israel", "Egypt"],
-    start: 1967,
-    end: undefined // TODO: look up
-  },
-  {
     name: "Gulf war",
     countries: ["Iraq", "Kuwait"],
     start: 1990,

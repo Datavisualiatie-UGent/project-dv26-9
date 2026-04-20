@@ -65,8 +65,8 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
             startOfConflict != null && Plot.text([startOfConflict], {
                 x: d => d,
                 frameAnchor: "top",
-                dx: 0,
-                dy: -50,
+                dx: -30,
+                dy: -20,
                 text: () => "Start\nof\nconflict",
                 textAnchor: "middle",
                 fontSize: 12
@@ -81,8 +81,8 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
             endOfConflict != null && Plot.text([endOfConflict], {
                 x: d => d,
                 frameAnchor: "top",
-                dx: 0,
-                dy: -50,
+                dx: 30,
+                dy: -20,
                 text: () => "End\nof\nconflict",
                 textAnchor: "middle",
                 fontSize: 12,
