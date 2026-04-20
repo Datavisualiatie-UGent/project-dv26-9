@@ -11,6 +11,16 @@ theme: "ocean-floor"
   <h1>Military Spending of ${selectedCountry}</h1>
 </div>
 
+
+```js
+const dataType = view(
+  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
+    value: "Absolute",
+  }),
+);
+```
+
+
 ```js
 const selectedCountry = view(
     Inputs.select(
@@ -21,7 +31,7 @@ const selectedCountry = view(
 ```
 
 <div class=container-base>
-  ${LinePlot({ data: dataForSelectedCountry })}
+  ${LinePlot({ data: dataForSelectedCountry, dataType: dataType })}
 </div>
 
 
@@ -42,7 +52,29 @@ const absoluteData = filterMilitaryData(rawAbsolute)
 
 
 ```js
-const dataForSelectedCountry = filterOnCountries(absoluteData, [selectedCountry])
+const dataMap = {
+  Absolute: await absoluteData,
+  Capita: capitaData,
+  Govt: govtData,
+  Gdp: gdpData,
+};
+```
+
+```js
+const capitaData = await FileAttachment("data/capita.csv").csv({ typed: true });
+```
+
+```js
+const govtData = await FileAttachment("data/govt.csv").csv({ typed: true });
+```
+
+```js
+const gdpData = await FileAttachment("data/gdp.csv").csv({ typed: true });
+```
+
+
+```js
+const dataForSelectedCountry = filterOnCountries(dataMap[dataType], [selectedCountry])
 ```
 
 
