@@ -77,7 +77,6 @@ const mapType = view(
 ```
 
 ```js
-let rotation = [0, 0, 0];
 let raf = null;
 
 function scheduleRender() {
@@ -104,9 +103,6 @@ function render(width) {
     width,
     rotationState.current,
   );
-
-  container.innerHTML = "";
-  container.appendChild(chart);
 }
 let dragging = false;
 let lastX = 0;
@@ -141,6 +137,11 @@ window.addEventListener("mousemove", (e) => {
 
   scheduleRender(container.clientWidth);
 });
+```
+
+```js
+mapType; // Reset y rotation when map is changed
+if (mapType === "Map") rotationState.current[1] = 0;
 ```
 
 <div style="
