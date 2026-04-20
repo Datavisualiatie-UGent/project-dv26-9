@@ -103,6 +103,8 @@ function render(width) {
     width,
     rotationState.current,
   );
+
+  container.replaceChildren(chart);
 }
 let dragging = false;
 let lastX = 0;
