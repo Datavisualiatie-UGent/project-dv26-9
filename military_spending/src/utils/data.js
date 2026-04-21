@@ -15,4 +15,8 @@ function filterOnCountries(data, countries) {
     return data.filter((d) => countries.includes(d.Entity));
 }
 
-export { filterMilitaryData, filterOnCountries };
+function filterOnYear(data, year) {
+    return data.filter((d) => d.Year === year);
+}
+
+export { filterMilitaryData, filterOnCountries, filterOnYear };
