@@ -1,0 +1,111 @@
+.country-selector {
+    font-family: sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.country-search {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.country-input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(23, 38, 122, 0.663);
+    background-color: rgba(39, 52, 128, 0.1);
+    border-radius: 5px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.country-input:hover,
+.country-input:focus {
+  border-color: var(--theme-foreground-focus);
+  background-color: rgba(39, 59, 175, 0.251);
+  outline: none;
+}
+
+.suggestions::-webkit-scrollbar {
+    display: none;
+}
+
+.suggestions {
+    border: 1px solid rgba(23, 38, 122, 0.663);
+    border-radius: 5px;
+    overflow: auto;
+    margin-bottom: 8px;
+    flex: 1;
+    width: 100%;
+    max-height: 200px;
+}
+
+.suggestions div {
+    padding: 6px;
+    cursor: pointer;
+}
+
+.suggestions div:hover {
+    border-color: var(--theme-foreground-focus);
+    background-color: rgba(39, 59, 175, 0.251);
+    outline: none;
+}
+
+.all-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.all-container button {
+    border: 1px solid rgba(23, 38, 122, 0.663);
+    border-radius: 5px;
+    background-color: rgba(39, 52, 128, 0.1);
+    color: var(--theme-foreground);
+    flex: 1;
+    min-height: 2rem;
+    padding: 0px;
+}
+
+.all-container button:hover {
+    cursor: pointer;
+    border-color: var(--theme-foreground-focus);
+    background-color: rgba(39, 59, 175, 0.251);
+    outline: none;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+}
+
+.badge {
+    background-color: rgba(39, 52, 128, 0.1);
+    border: 1px solid rgba(23, 38, 122, 0.663);
+    color: white;
+    padding: 6px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.badge:hover {
+    text-decoration: line-through;
+    background-color: rgba(39, 59, 175, 0.251);
+}
+
+.badge-disabled {
+    background-color: transparent;
+    border-color: grey;
+}

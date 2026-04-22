@@ -6,6 +6,7 @@ theme: "ocean-floor"
 <div class="hero">
   <h1>Military spendings around the world</h1>
 </div>
+<link rel="stylesheet" href="./style/base.css">
 
 ```js
 import { spendingsMap } from "./components/spendingsMap.js";
