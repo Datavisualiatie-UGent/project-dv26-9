@@ -44,6 +44,12 @@ const militaryData = filterMilitaryData(rawAbsolute)
 ```
 
 ```js
+const militaryLookup = new Map(
+  militaryData.map(d => [`${d.Code}-${d.Year}`, d])
+);
+```
+
+```js
 const gdpData = await FileAttachment(
   "data/gdp_of_countries.csv",
 ).csv({ typed: true });
@@ -52,9 +58,7 @@ const gdpData = await FileAttachment(
 ```js
 const militaryJoinedWithGDP = gdpData
   .map(g => {
-    const m = militaryData.find(
-      d => d.Code === g.Code && d.Year === g.Year
-    );
+    const m = militaryLookup.get(`${g.Code}-${g.Year}`);
     return m
       ? {
           Country: g.Country,
