@@ -1,5 +1,5 @@
 ---
-title: "Interactive Lineplot"
+title: "Lineplot"
 toc: false
 theme: "ocean-floor"
 ---
@@ -9,6 +9,18 @@ theme: "ocean-floor"
 
 <div class="hero">
   <h1>Military Spending of ${selectedCountry}</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This interactive line chart displays the evolution of military expenditure over time for a selected country. The user can choose which country to view, and the chart updates to show its data across different years.
+  </br></br>
+  The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in billions of USD), as a percentage of GDP, as a percentage of total government expenditure, or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
+  </br></br>
+  Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip, including the year and the exact level of military expenditure in the chosen format. 
+  </br></br>
+  This allows users to easily track trends, identify periods of increase or decrease in spending.
+  </h2>
 </div>
 
 

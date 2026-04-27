@@ -12,6 +12,15 @@ theme: "ocean-floor"
 </div>
 
 
+<div class="summary">
+  <h2>
+  This scatterplot shows the relationship between a country’s GDP and its military expenditure for a selected year. Each point represents a country, positioned horizontally according to its GDP and vertically according to how much it spends on the military.
+  </br></br>
+  The x-axis uses a logarithmic scale to better display countries with very different economic sizes, while the y-axis shows military expenditure in absolute terms (converted to billions of USD). By selecting a specific year, the plot reflects the situation for that time period, allowing comparison of how economic size relates to defense spending across countries.
+  </h2>
+</div>
+
+
 ```js
 const year = view(
   Inputs.range([1960, 2024], {

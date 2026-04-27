@@ -56,6 +56,26 @@
 }
 
 
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--sans-serif);
+  margin: 2rem 0 6rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.summary h2 {
+  margin: 0;
+  max-width: 36em;
+  font-size: 24px;
+  font-style: initial;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--theme-foreground-muted);
+}
+
 select {
   padding: 0.5rem;
   border-radius: 6px;

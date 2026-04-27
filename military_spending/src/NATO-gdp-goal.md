@@ -12,16 +12,16 @@ theme: "ocean-floor"
 </div>
 
 
-```js
-const year = view(
-  Inputs.range([1960, 2024], {
-    step: 1,
-    value: 2024,
-    label: "Year",
-  }),
-);
-```
-
+<div class="summary">
+  <h2>
+  This plot compares how much NATO member countries currently spend on military purposes as a percentage of their GDP in 2024, alongside a common target set for the future. Each dot represents a country, positioned along the horizontal axis according to the percentage of its GDP devoted to defense. 
+  </br></br>
+  The vertical red line marks a common target: by 2035, all NATO countries are expected to reach a military spending level equivalent to 5% of their GDP. 
+  </br></br>
+  All countries are still to the left of this line and thus currently (in 2024, since this in the most recently available data) below the target.
+  This plot makes it easy to see which countries are already close to this target, and which still need to increase their military spending by a lot to meet the objective.
+  </h2>
+</div>
 
 <div class=container-base>
   ${GDPGoalPlot({ data: natoInPercent })}
@@ -79,10 +79,9 @@ const countriesOfNATO = [
 ];
 
 const natoInPercent = percentOfGDPData
-    .filter(d => countriesOfNATO.includes(d.Country) && d.Year === year)
+    .filter(d => countriesOfNATO.includes(d.Country) && d.Year === 2024)
     .map(d => ({
     country: d.Country,
-    year: +d.Year,
     percentage_of_military_expenditure: +d.gdp,
     })).sort(
     (a, b) =>
