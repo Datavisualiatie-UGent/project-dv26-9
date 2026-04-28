@@ -46,7 +46,25 @@ const selectedCountry = view(
   ${LinePlot({ data: dataForSelectedCountry, dataType: dataType })}
 </div>
 
+---
 
+<div class="hero">
+  <h1>Military Spending of the World</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. 
+  This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
+  </br></br>
+  Each point on the line represents the total absolute military expenditure for that year, measured in billions of USD.
+  Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year, providing insights into how global defense spending has changed over time.
+  </h2>
+</div>
+
+<div class="container-base">
+  ${LinePlot({ data: worldData, dataType: "Absolute" })}
+</div>
 
 
 ```js
@@ -87,6 +105,30 @@ const gdpData = await FileAttachment("data/gdp.csv").csv({ typed: true });
 
 ```js
 const dataForSelectedCountry = filterOnCountries(dataMap[dataType], [selectedCountry])
+```
+
+
+```js
+const worldData = (() => {
+  const data = absoluteData;
+  const byYear = new Map();
+
+  for (const d of data) {
+    const year = d.Year;
+    const value = d.Military_expenditure; // adjust if needed
+
+    byYear.set(year, (byYear.get(year) || 0) + value);
+  }
+
+  return Array.from(byYear, ([Year, Military_expenditure]) => ({
+    Entity: "World",
+    Year,
+    Military_expenditure
+  }))
+  .sort((a, b) => a.Year - b.Year); // sort by year
+})();
+
+console.log(worldData);
 ```
 
 

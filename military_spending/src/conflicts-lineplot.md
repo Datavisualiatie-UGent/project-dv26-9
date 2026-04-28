@@ -11,20 +11,8 @@ theme: "ocean-floor"
   <h1>Effect of conflicts on Military Spending</h1>
 </div>
 
-```js
-const selectedConflict = view(
-  Inputs.select(
-    conflicts,
-    {
-      format: d => d.name,
-      value: conflicts[0].name
-    }
-  )
-);
-```
-
 <div class=container-base>
-  ${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: selectedConflict.start, endOfConflict: selectedConflict.end })}
+  ${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: 2022, endOfConflict: undefined })}
 </div>
 
 
@@ -33,9 +21,6 @@ import ConflictLinePlot from "./components/conflictLinePlot.js";
 import { filterMilitaryData, filterOnCountries } from "./utils/data.js"
 ```
 
-```js
-const countriesOfConflict = selectedConflict.countries;
-```
 
 ```js
 const rawAbsolute = await FileAttachment(
@@ -47,35 +32,5 @@ const absoluteData = filterMilitaryData(rawAbsolute)
 
 
 ```js
-const dataForSelectedCountry = filterOnCountries(absoluteData, countriesOfConflict)
-```
-
-
-```js
-const conflicts = [
-  {
-    name: "Ukrain vs Russia",
-    countries: ["Ukraine", "Russia"],
-    start: 2022,
-    end: undefined // ongoing
-  },
-  {
-    name: "Iran-Iraq war",
-    countries: ["Iran", "Iraq"],
-    start: 1980,
-    end: 1988
-  },
-  {
-    name: "Gulf war",
-    countries: ["Iraq", "Kuwait"],
-    start: 1990,
-    end: 1991
-  }
-];
-```
-
-```js
-function getConflictByCountries(data, countries) {
-  return data.filter(d => countries.includes(d.country));
-}
+const dataForSelectedCountry = filterOnCountries(absoluteData, ["Ukraine", "Russia"])
 ```
