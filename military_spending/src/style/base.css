@@ -98,3 +98,20 @@ option {
   background-color: var(--theme-background, #1e293b);
   color: var(--theme-foreground, white);
 }
+
+.inputs-3a86ea label {
+  display: none;
+}
+
+.inputs-3a86ea input[type="number"] {
+  border: 1px solid rgba(23, 38, 122, 0.663);
+  background-color: rgba(39, 52, 128, 0.1);
+  color: var(--theme-foreground);
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 100px;
+}
+
+.inputs-3a86ea input[type="range"] {
+  width: 150px;
+}
