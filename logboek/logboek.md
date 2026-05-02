@@ -1,8 +1,8 @@
-# Logboek Datavisualistaie groep 9: militaire uitgaven
+# Logboek Datavisualisatie groep 9: militaire uitgaven
 Maarten Lambrecht, Nyah Van Wayenberge
 
 
-# 1: initieele ideeën voor visualisatie
+# 1: initiële ideeën voor visualisatie
 - **line chart** die de evolutie van militaire uitgaven per land toont door de jaren heen
 ![line chart](/logboek/images/line_chart.png)
 
@@ -13,7 +13,7 @@ Maarten Lambrecht, Nyah Van Wayenberge
 ![world map](/logboek/images/world_map.png)
 ![globe map](/logboek/images/globe.png)
 
-- **verhaalende visualisatie (storytelling)**: Stacked bar charts die de militaire uitgaven van de NAVO-landen vergelijkt met die van Rusland. 1 plot zonder VS en 1 plot met VS, om te laten zien hoe de NAVO-landen afhangen van de VS in termen van militaire uitgaven en bescherming in geval van een conflict met Rusland. 
+- **verhalende visualisatie (storytelling)**: Stacked bar charts die de militaire uitgaven van de NAVO-landen vergelijkt met die van Rusland. 1 plot zonder VS en 1 plot met VS, om te laten zien hoe de NAVO-landen afhangen van de VS in termen van militaire uitgaven en bescherming in geval van een conflict met Rusland. 
 
 
 Al deze visualisaties zouden interactief zijn, zodat gebruikers kunnen filteren op specifieke landen of jaren om een dieper inzicht te krijgen in de data en de trends die zich voordoen.
@@ -36,26 +36,26 @@ In de line chart, bar chart & wereldkaart kan de gebruiker nu ook filteren op de
 ![data types](/logboek/images/data_type_selector.png)
 
 
-# 4: nieuwe idee voor de verhaalende visualisatie
+# 4: nieuw idee voor de verhalende visualisatie
 Plot de uitgaven van 2 landen die in conflict zijn met elkaar: Rusland vs Oekraïne op een line chart, met een verticale lijn die aanduidt wanneer de oorlog begon.
 Op deze manier kunnen we zien of conflicten een invloed hebben op de militaire uitgaven van elk land.
 
 ![conflict storytelling](/logboek/images/conflicts.png)
 
-- Het initiele idee was om dit te doen voor meerdere conflicten, maar data was niet beschikbaar of volledig voor alle landen en conflicten, dus we hebben besloten om ons te richten op Rusland vs Oekraïne vanwege de recente aard van het conflict en de beschikbaarheid van data.
+- Het initiële idee was om dit te doen voor meerdere conflicten, maar data was niet beschikbaar of volledig voor alle landen en conflicten, dus we hebben besloten om ons te richten op Rusland vs Oekraïne vanwege de recente aard van het conflict en de beschikbaarheid van data.
 
 
-# 5: extra gdp dataset toegevoegd + extra plot toegevoegd
-gdp dataset, die de totale gdp van elk land per jaar toont, toegevoegd. 
-Hierdoor kunnen we ook een **scatter plot** maken die de absolute militaire uitgaven van elk land toont in relatie tot hun gdp.
+# 5: extra GDP-dataset toegevoegd + extra plot toegevoegd
+Een GDP-dataset, die het totale GDP van elk land per jaar toont, toegevoegd. 
+Hierdoor kunnen we ook een **scatter plot** maken die de absolute militaire uitgaven van elk land toont in relatie tot hun GDP.
 Dit geeft een beeld van hoe groot de militaire uitgaven zijn in verhouding tot de totale economie van elk land.
 
 ![scatter plot](/logboek/images/scatter_plot.png)
 
 
 # 6: extra visualisaties toegevoegd
-- visualisatie die het huidige (2024) procent van het gdp dat elke lidstaat van de NAVO uitgeeft aan militaire uitgaven toont, ten opzichte van het NAVO doel van 5% tegen 2035
-![navo gdp](/logboek/images/navo_gdp.png)
+- visualisatie die het huidige (2024) procent van het GDP dat elke lidstaat van de NAVO uitgeeft aan militaire uitgaven toont, ten opzichte van het NAVO doel van 5% tegen 2035
+![navo GDP](/logboek/images/navo_gdp.png)
 
 - visualisatie die de top 5 landen toont met de hoogste militaire uitgaven door de jaren heen
 ![top 5](/logboek/images/rank_plot.png)
@@ -67,12 +67,12 @@ Dit geeft een beeld van hoe groot de militaire uitgaven zijn in verhouding tot d
 Maarten: 
 - bar chart
 - wereldkaart
-- extra data (gdp, per capita, gdp)
+- extra data (GDP, per capita, government spending)
 
 Nyah: 
 - line chart
 - conflict linechart
-- gdp dataset
+- GDP-dataset
 - scatter plot
-- NAVO gdp plot
+- NAVO GDP plot
 - top 5 plot
