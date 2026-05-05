@@ -1,5 +1,5 @@
 ---
-title: "Conflicts"
+title: "Conflict"
 toc: false
 theme: "ocean-floor"
 ---
@@ -8,23 +8,19 @@ theme: "ocean-floor"
 <link rel="stylesheet" href="./style/base.css">
 
 <div class="hero">
-  <h1>Effect of conflicts on Military Spending</h1>
+  <h1>Effect of war between Ukraine and Russia on Military Spending</h1>
 </div>
 
-```js
-const selectedConflict = view(
-  Inputs.select(
-    conflicts,
-    {
-      format: d => d.name,
-      value: conflicts[0].name
-    }
-  )
-);
-```
+<div class="summary">
+  <h2>
+  This plot shows the military expenditure of Ukraine and Russia over time, with a focus on the period around the conflict that started in 2022. The plot allows us to see how the military spending of both countries has evolved before, during, and after the conflict. 
+  </br></br>
+  We can observe that both countries had a significant increase in military spending around the time of the conflict, with Russia's expenditure being notably higher than Ukraine's. 
+  </h2>
+</div>
 
 <div class=container-base>
-  ${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: selectedConflict.start, endOfConflict: selectedConflict.end })}
+  ${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: 2022, endOfConflict: undefined })}
 </div>
 
 
@@ -33,9 +29,6 @@ import ConflictLinePlot from "./components/conflictLinePlot.js";
 import { filterMilitaryData, filterOnCountries } from "./utils/data.js"
 ```
 
-```js
-const countriesOfConflict = selectedConflict.countries;
-```
 
 ```js
 const rawAbsolute = await FileAttachment(
@@ -47,41 +40,5 @@ const absoluteData = filterMilitaryData(rawAbsolute)
 
 
 ```js
-const dataForSelectedCountry = filterOnCountries(absoluteData, countriesOfConflict)
-```
-
-
-```js
-const conflicts = [
-  {
-    name: "Ukrain vs Russia",
-    countries: ["Ukraine", "Russia"],
-    start: 2022,
-    end: undefined // ongoing
-  },
-  {
-    name: "Iran-Iraq war",
-    countries: ["Iran", "Iraq"],
-    start: 1980,
-    end: 1988
-  },
-  {
-    name: "Yom Kippur War",
-    countries: ["Israel", "Egypt"],
-    start: 1967,
-    end: undefined // TODO: look up
-  },
-  {
-    name: "Gulf war",
-    countries: ["Iraq", "Kuwait"],
-    start: 1990,
-    end: 1991
-  }
-];
-```
-
-```js
-function getConflictByCountries(data, countries) {
-  return data.filter(d => countries.includes(d.country));
-}
+const dataForSelectedCountry = filterOnCountries(absoluteData, ["Ukraine", "Russia"])
 ```

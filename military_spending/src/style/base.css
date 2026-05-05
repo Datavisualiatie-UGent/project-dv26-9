@@ -39,12 +39,42 @@
 
 .container-base {
   width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
   margin: 2rem 0;
+  padding: 0 80px;
+  box-sizing: border-box;
 }
 
+.container-base figure {
+  width: 100%;
+  margin: 0;
+}
+
+.container-base svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--sans-serif);
+  margin: 2rem 0 6rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.summary h2 {
+  margin: 0;
+  max-width: 36em;
+  font-size: 24px;
+  font-style: initial;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--theme-foreground-muted);
+}
 
 select {
   padding: 0.5rem;

@@ -1,12 +1,20 @@
 import * as Plot from "npm:@observablehq/plot";
 
+const formatValueOnTooltip = (value) => {
+    return `${new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(value / 1e9)} billion USD`;
+};
+
+
 export default function ConflictLinePlot({ data, startOfConflict, endOfConflict }) {
     return Plot.plot({
         //width: 850,
         y: {grid: true},
         color: {legend: true},
         
-        marginTop: 50,
+        marginTop: 100,
         marginRight: 50,
         //marginLeft: 200,
         
@@ -35,25 +43,24 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
                 opacity: 0.5
             })),
 
-            // Interactive text that shows current year and expenditures
             Plot.text(data, Plot.pointerX({
-                x: "Year",
-                frameAnchor: "top-right",
-                fontVariant: "tabular-nums",
-                fontSize: 12,
-                dx: -10,
+                px: "Year", 
+                py: "Military_expenditure", 
+                dy: -100, 
+                frameAnchor: "top-right", 
+                fontVariant: "tabular-nums", 
                 text: (d) => {
-                    const fmt = new Intl.NumberFormat("en-US");
                     const rows = data.filter(row => row.Year === d.Year)
                 
                     return [
-                    `Year: ${d.Year}`,
-                    "",
-                    ...rows.map(d =>
-                        `${d.Entity}: ${fmt.format(d.Military_expenditure)} USD`
-                    )
+                        `Year: ${d.Year}`,
+                        "",
+                        ...rows.map(d =>
+                            `${d.Entity}: ${formatValueOnTooltip(d.Military_expenditure)}`
+                        )
                     ].join("\n");
-                }
+                },
+                fontSize: 13
             })),
 
             // Vertical line for start
@@ -66,7 +73,7 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
                 x: d => d,
                 frameAnchor: "top",
                 dx: 0,
-                dy: -50,
+                dy: -40,
                 text: () => "Start\nof\nconflict",
                 textAnchor: "middle",
                 fontSize: 12
@@ -82,7 +89,7 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
                 x: d => d,
                 frameAnchor: "top",
                 dx: 0,
-                dy: -50,
+                dy: -40,
                 text: () => "End\nof\nconflict",
                 textAnchor: "middle",
                 fontSize: 12,
@@ -95,7 +102,7 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
             tickFormat: d => `${d}`
         },
         y: {
-            label: "Military expenditure in USD (×10⁹)",
+            label: "Military expenditure (billion USD)",
             grid: true,
             tickFormat: d => d / (10**9)  // divide by 1000 for labels
         }

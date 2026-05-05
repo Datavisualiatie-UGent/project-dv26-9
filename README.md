@@ -13,6 +13,9 @@ Bij het uitpakken van dit bestand, wordt de map `military-spending-sipri` aangem
 ## Databron
 Stockholm International Peace Research Institute (2025) – with minor processing by Our World in Data. “Military spending” [dataset]. Stockholm International Peace Research Institute, “SIPRI Military Expenditure Database” [original data]. Retrieved March 9, 2026 from https://archive.ourworldindata.org/20260304-094028/grapher/military-spending-sipri.html (archived on March 4, 2026).
 
+Dataset for GDP of all countries: World Bank
+https://data.worldbank.org/indicator/NY.GDP.MKTP.CD
+
 **Originele bron:**
 https://www.sipri.org/databases/milex
 
