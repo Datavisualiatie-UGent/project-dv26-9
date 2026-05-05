@@ -17,7 +17,6 @@ import { ToggleButtons } from "./components/toggleButton.js"
 const rawAbsolute = await FileAttachment(
   "data/military-spending-sipri.csv",
 ).csv({ typed: true });
-console.log(rawAbsolute)
 const absoluteData = rawAbsolute.filter(
   (d) => !d.Entity.includes("(SIPRI)") && d.Entity != "World",
 );
@@ -25,7 +24,6 @@ absoluteData.forEach((d) => {
   d.Military_expenditure = d["Military expenditure"];
   delete d["Military expenditure"];
 });
-console.log(absoluteData)
 ```
 
 ```js
@@ -34,7 +32,6 @@ const capitaData = await FileAttachment("data/capita2.csv").csv({ typed: true })
 
 ```js
 const govtData = await FileAttachment("data/govt2.csv").csv({ typed: true });
-console.log(govtData)
 ```
 
 ```js
