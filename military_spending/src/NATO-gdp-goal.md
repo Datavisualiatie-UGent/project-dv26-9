@@ -14,11 +14,11 @@ theme: "ocean-floor"
 
 <div class="summary">
   <h2>
-  This plot compares how much NATO member countries currently spend on military purposes as a percentage of their GDP in 2024, alongside a common target set for the future. Each dot represents a country, positioned along the horizontal axis according to the percentage of its GDP devoted to defense. 
+  This plot compares how much NATO member countries currently spend on military purposes as a percentage of their GDP in 2025, alongside a common target set for the future. Each dot represents a country, positioned along the horizontal axis according to the percentage of its GDP devoted to defense. 
   </br></br>
   The vertical red line marks a common target: by 2035, all NATO countries are expected to reach a military spending level equivalent to 5% of their GDP. 
   </br></br>
-  All countries are still to the left of this line and thus currently (in 2024, since this in the most recently available data) below the target.
+  All countries are still to the left of this line and thus currently (in 2025, since this in the most recently available data) below the target.
   This plot makes it easy to see which countries are already close to this target, and which still need to increase their military spending by a lot to meet the objective.
   </h2>
 </div>
@@ -36,9 +36,8 @@ import { filterMilitaryData, filterOnYear } from "./utils/data.js"
 ```
 
 ```js
-const percentOfGDPData = await FileAttachment(
-  "data/military-spending-sipri-gdp-long.csv",
-).csv({ typed: true });
+const percentOfGDPData = await FileAttachment("data/gdp2.csv").csv({ typed: true });
+
 ```
 
 
@@ -79,10 +78,10 @@ const countriesOfNATO = [
 ];
 
 const natoInPercent = percentOfGDPData
-    .filter(d => countriesOfNATO.includes(d.Country) && d.Year === 2024)
+    .filter(d => countriesOfNATO.includes(d.Entity) && d.Year === 2025)
     .map(d => ({
-    country: d.Country,
-    percentage_of_military_expenditure: +d.gdp,
+    country: d.Entity,
+    percentage_of_military_expenditure: +d.Military_expenditure,
     })).sort(
     (a, b) =>
         d3.descending(
@@ -90,6 +89,7 @@ const natoInPercent = percentOfGDPData
         b.percentage_of_military_expenditure
         )
     );
+    
 ```
 
 ---

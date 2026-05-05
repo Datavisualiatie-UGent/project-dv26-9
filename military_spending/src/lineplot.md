@@ -16,7 +16,7 @@ theme: "ocean-floor"
   This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. 
   This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
   </br></br>
-  Each point on the line represents the total absolute military expenditure for that year, measured in billions of USD.
+  Each point on the line represents the total absolute military expenditure for that year, measured in constant 2024 USD.
   Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year, providing insights into how global defense spending has changed over time.
   </h2>
 </div>
@@ -36,7 +36,7 @@ theme: "ocean-floor"
   <h2>
   This interactive line chart displays the evolution of military expenditure over time for a selected country. The user can choose which country to view, and the chart updates to show its data across different years.
   </br></br>
-  The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in billions of USD), as a percentage of GDP, as a percentage of total government expenditure, or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
+  The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in constant 2024 USD), as a percentage of GDP, as a percentage of total government expenditure, or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
   </br></br>
   Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip: the year and the exact level of military expenditure in the chosen format. 
   </h2>
@@ -72,11 +72,7 @@ import { filterMilitaryData, filterOnCountries } from "./utils/data.js"
 ```
 
 ```js
-const rawAbsolute = await FileAttachment(
-  "data/military-spending-sipri.csv",
-).csv({ typed: true });
-
-const absoluteData = filterMilitaryData(rawAbsolute)
+const absoluteData = await FileAttachment("data/absolute2.csv").csv({ typed: true });
 ```
 
 
@@ -90,20 +86,21 @@ const dataMap = {
 ```
 
 ```js
-const capitaData = await FileAttachment("data/capita.csv").csv({ typed: true });
+const capitaData = await FileAttachment("data/capita2.csv").csv({ typed: true });
 ```
 
 ```js
-const govtData = await FileAttachment("data/govt.csv").csv({ typed: true });
+const govtData = await FileAttachment("data/govt2.csv").csv({ typed: true });
 ```
 
 ```js
-const gdpData = await FileAttachment("data/gdp.csv").csv({ typed: true });
+const gdpData = await FileAttachment("data/gdp2.csv").csv({ typed: true });
 ```
 
 
 ```js
 const dataForSelectedCountry = filterOnCountries(dataMap[dataType], [selectedCountry])
+console.log(dataForSelectedCountry)
 ```
 
 

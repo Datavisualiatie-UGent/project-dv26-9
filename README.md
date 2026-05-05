@@ -2,7 +2,7 @@
 
 
 Deze repository bevat visualisaties gebaseerd op de dataset over militaire uitgaven van Our World in Data. 
-De data is afkomstig uit de SIPRI Military Expenditure Database en toont de jaarlijkse militaire uitgaven per land van 1949 tot en met 2024, uitgedrukt in constante 2023 US dollars.
+De data is afkomstig uit de SIPRI Military Expenditure Database en toont de jaarlijkse militaire uitgaven per land van 1949 tot en met 2025, uitgedrukt in constante 2024 US dollars.
 
 
 ## Data

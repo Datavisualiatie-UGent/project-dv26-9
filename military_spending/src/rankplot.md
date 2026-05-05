@@ -26,6 +26,8 @@ theme: "ocean-floor"
 
 <div>
   ${RankPlot({ data: top5_sorted, selected: "" })}
+    ${RankPlot({ data: top5_sorted2, selected: "" })}
+
 </div>
 
 
@@ -42,6 +44,11 @@ const rawAbsolute = await FileAttachment(
 ).csv({ typed: true });
 
 const militaryData = filterMilitaryData(rawAbsolute)
+```
+
+```js
+const absoluteData = await FileAttachment("data/absolute2.csv").csv({ typed: true });
+console.log(absoluteData)
 ```
 
 ```js
@@ -71,6 +78,7 @@ const top5 = () => {
   for (const d of all) {
     bestRank.set(d.Country, Math.min(bestRank.get(d.Country) ?? Infinity, d.rank));
   }
+  console.log(bestRank)
   
   // keep only countries that ever reach top 5
   return all.filter(d => bestRank.get(d.Country) <= 5);
@@ -79,6 +87,46 @@ const top5 = () => {
 
 ```js
 const top5_sorted = top5().sort((a, b) =>
+  d3.ascending(a.Country, b.Country) ||
+  d3.ascending(a.Year, b.Year)
+);
+```
+
+```js
+
+const top52 = () => {
+  const byYear = new Map();
+
+  absoluteData.forEach(d => {
+    (byYear.get(d.Year) ?? byYear.set(d.Year, []).get(d.Year)).push(d);
+  });
+
+  const all = [...byYear].flatMap(([year, values]) =>
+    values
+      .sort((a, b) => b.Military_expenditure - a.Military_expenditure)
+      .slice(0, 6)
+      .map((d, i) => ({
+        Country: d.Entity,
+        Year: year,
+        value: d.Military_expenditure,
+        rank: i + 1
+      }))
+  );
+
+  // find best (minimum) rank per country
+  const bestRank = new Map();
+
+  for (const d of all) {
+    bestRank.set(d.Country, Math.min(bestRank.get(d.Country) ?? Infinity, d.rank));
+  }
+  
+  // keep only countries that ever reach top 5
+  return all.filter(d => bestRank.get(d.Country) <= 5);
+}
+```
+
+```js
+const top5_sorted2 = top52().sort((a, b) =>
   d3.ascending(a.Country, b.Country) ||
   d3.ascending(a.Year, b.Year)
 );

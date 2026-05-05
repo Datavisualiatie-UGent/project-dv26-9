@@ -7,18 +7,6 @@ theme: "ocean-floor"
 <link rel="stylesheet" href="./style/base.css">
 <link rel="stylesheet" href="./style/barPlot.css">
 
-```js
-const rawAbsolute = await FileAttachment(
-  "data/military-spending-sipri.csv",
-).csv({ typed: true });
-const absoluteData = rawAbsolute.filter(
-  (d) => !d.Entity.includes("(SIPRI)") && d.Entity != "World",
-);
-absoluteData.forEach((d) => {
-  d.Military_expenditure = d["Military expenditure"];
-  delete d["Military expenditure"];
-});
-```
 
 ```js
 const dataMap = {
@@ -27,6 +15,10 @@ const dataMap = {
   Govt: govtData,
   Gdp: gdpData,
 };
+```
+
+```js
+const absoluteData = await FileAttachment("data/absolute2.csv").csv({ typed: true });
 ```
 
 ```js
@@ -77,7 +69,7 @@ const dataType = view(
 
 ```js
 const rangeMap = {
-  absolute: [1949, 2024],
+  absolute: [1949, 2025],
   capita: [1988, 2025],
   govt: [1988, 2025],
   gdp: [1949, 2025],
@@ -85,7 +77,7 @@ const rangeMap = {
 const year = view(
   Inputs.range(rangeMap[dataType.toLowerCase()], {
     step: 1,
-    value: 2024,
+    value: 2025,
     label: "Year",
   }),
 );

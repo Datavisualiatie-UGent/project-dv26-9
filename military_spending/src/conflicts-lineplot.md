@@ -29,13 +29,8 @@ import ConflictLinePlot from "./components/conflictLinePlot.js";
 import { filterMilitaryData, filterOnCountries } from "./utils/data.js"
 ```
 
-
 ```js
-const rawAbsolute = await FileAttachment(
-  "data/military-spending-sipri.csv",
-).csv({ typed: true });
-
-const absoluteData = filterMilitaryData(rawAbsolute)
+const absoluteData = await FileAttachment("data/absolute2.csv").csv({ typed: true });
 ```
 
 

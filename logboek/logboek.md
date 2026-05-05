@@ -54,13 +54,16 @@ Dit geeft een beeld van hoe groot de militaire uitgaven zijn in verhouding tot d
 
 
 # 6: extra visualisaties toegevoegd
-- visualisatie die het huidige (2024) procent van het GDP dat elke lidstaat van de NAVO uitgeeft aan militaire uitgaven toont, ten opzichte van het NAVO doel van 5% tegen 2035
+- visualisatie die het huidige (2025) procent van het GDP dat elke lidstaat van de NAVO uitgeeft aan militaire uitgaven toont, ten opzichte van het NAVO doel van 5% tegen 2035
 ![navo GDP](/logboek/images/navo_gdp.png)
 
 - visualisatie die de top 5 landen toont met de hoogste militaire uitgaven door de jaren heen
 ![top 5](/logboek/images/rank_plot.png)
 
-# 7: tekstuele uitleg toegevoegd bij visualisaties
+# 7: Uitbreiding van de data naar 2025
+- Elk jaar wordt de SIPRI Military Expenditure Database uitgebreid, tijdens het project werd de data van 2025 hier dus aan toegevoegd en werden sommige waarden van voorgaande jaren licht aangepast. Daarom hebben we dus onze datasets zelf ook hiermee uitgebreid, voor correctere en meer data.
+
+# 8: tekstuele uitleg toegevoegd bij visualisaties
 
 
 # Rolverdeling
@@ -68,6 +71,7 @@ Maarten:
 - bar chart
 - wereldkaart
 - extra data (GDP, per capita, government spending)
+- Data updaten
 
 Nyah: 
 - line chart
