@@ -1,5 +1,5 @@
 ---
-title: "Conflicts"
+title: "Conflict"
 toc: false
 theme: "ocean-floor"
 ---
@@ -8,7 +8,7 @@ theme: "ocean-floor"
 <link rel="stylesheet" href="./style/base.css">
 
 <div class="hero">
-  <h1>Effect of conflicts on Military Spending</h1>
+  <h1>Effect of war between Ukraine and Russia on Military Spending</h1>
 </div>
 
 <div class="summary">

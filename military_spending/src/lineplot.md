@@ -1,11 +1,32 @@
 ---
-title: "Lineplot"
+title: "Line plot"
 toc: false
 theme: "ocean-floor"
 ---
 
 
 <link rel="stylesheet" href="./style/base.css">
+
+<div class="hero">
+  <h1>Military Spending of the World</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. 
+  This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
+  </br></br>
+  Each point on the line represents the total absolute military expenditure for that year, measured in billions of USD.
+  Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year, providing insights into how global defense spending has changed over time.
+  </h2>
+</div>
+
+<div class="container-base">
+  ${LinePlot({ data: worldData, dataType: "Absolute" })}
+</div>
+
+
+---
 
 <div class="hero">
   <h1>Military Spending of ${selectedCountry}</h1>
@@ -17,9 +38,7 @@ theme: "ocean-floor"
   </br></br>
   The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in billions of USD), as a percentage of GDP, as a percentage of total government expenditure, or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
   </br></br>
-  Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip, including the year and the exact level of military expenditure in the chosen format. 
-  </br></br>
-  This allows users to easily track trends, identify periods of increase or decrease in spending.
+  Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip: the year and the exact level of military expenditure in the chosen format. 
   </h2>
 </div>
 
@@ -44,26 +63,6 @@ const selectedCountry = view(
 
 <div class=container-base>
   ${LinePlot({ data: dataForSelectedCountry, dataType: dataType })}
-</div>
-
----
-
-<div class="hero">
-  <h1>Military Spending of the World</h1>
-</div>
-
-<div class="summary">
-  <h2>
-  This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. 
-  This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
-  </br></br>
-  Each point on the line represents the total absolute military expenditure for that year, measured in billions of USD.
-  Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year, providing insights into how global defense spending has changed over time.
-  </h2>
-</div>
-
-<div class="container-base">
-  ${LinePlot({ data: worldData, dataType: "Absolute" })}
 </div>
 
 

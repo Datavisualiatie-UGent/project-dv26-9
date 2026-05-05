@@ -41,7 +41,7 @@ const formatValueOnTooltip = (value, type) => {
   if (value == null || isNaN(value)) return "No data";
 
   if (type === "govt" || type === "gdp") {
-    return `${value}% of ${type === "govt" ? "government expenditure" : "GDP"}`;
+    return `${value}% of ${type === "govt" ? "government spending" : "GDP"}`;
   }
 
   if (type === "absolute") {
@@ -68,6 +68,7 @@ export default function LinePlot({ data, dataType }) {
     // Render line plot when data changes
     return Plot.plot({
         y: {axis: "right", grid: true, nice: true},
+        marginTop: 35,
         marks: [
             Plot.lineY(data, {
                 x: "Year", 
@@ -103,10 +104,10 @@ export default function LinePlot({ data, dataType }) {
             Plot.text(data, Plot.pointer({
                 px: "Year", 
                 py: "Military_expenditure", 
-                dy: -17, 
+                dy: -30, 
                 frameAnchor: "top-right", 
                 fontVariant: "tabular-nums", 
-                text: (d) => [`Year: ${d.Year}`, `Military expenditure: ${formatValueOnTooltip(d.Military_expenditure, dataType.toLowerCase())}`].join("   "),
+                text: (d) => [`Year: ${d.Year}`, `Military expenditure: ${formatValueOnTooltip(d.Military_expenditure, dataType.toLowerCase())}`].join("\n"),
                 fontSize: 13
             })),
 

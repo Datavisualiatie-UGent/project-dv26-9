@@ -1,5 +1,5 @@
 ---
-title: "Rank Plot"
+title: "Top 5 spending countries"
 toc: false
 theme: "ocean-floor"
 ---
@@ -16,7 +16,7 @@ theme: "ocean-floor"
   <h2>
   This plot shows the top 5 countries with the highest military spending for each year. The rank of each country is determined by its military expenditure compared to other countries in that year. The plot allows us to see how the rankings of countries have changed over time.
   </br></br>
-  That way you can for example see that the United States has consistently been the country with the highest military spending, while other countries like the UK and Germany have also been in the top 5 for many years.
+  That way we can for example see that the United States has consistently been the country with the highest military spending, while other countries like the UK and Germany have also been in the top 5 for many years.
   </br></br>
   Another interesting observation is that since 2000, China has been rising in the ranks and has become one of the top spenders in recent years.
   While the UK has dropped to the bottom / out of the top 5 in recent years.
