@@ -18,7 +18,7 @@ const dataMap = {
 ```
 
 ```js
-const absoluteData = await FileAttachment("data/absolute2.csv").csv({ typed: true });
+const absoluteData = await FileAttachment("data/absolute.csv").csv({ typed: true });
 ```
 
 ```js
