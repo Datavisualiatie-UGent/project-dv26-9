@@ -7,10 +7,6 @@ const formatValueOnYAxis = (value, type) => {
     return `${value}%`;
   }
 
-  if (type === "absolute") {
-    return value / 1e9; // convert to billions for labels
-  }
-
   return (
     new Intl.NumberFormat("en-US", {
       notation: "compact",
@@ -26,7 +22,7 @@ const formatValueOnYLabel = (type) => {
   }
 
   else if (type === "absolute") {
-    return "Military expenditure (billion USD)";
+    return "Military expenditure";
   } 
 
   else if (type === "capita") {
@@ -47,8 +43,9 @@ const formatValueOnTooltip = (value, type) => {
   if (type === "absolute") {
     return `${new Intl.NumberFormat("en-US", {
       minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }).format(value / 1e9)} billion USD`;
+      maximumFractionDigits: 2,
+      notation: "compact"
+    }).format(value)} USD`;
   }
 
   return (

@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 export async function loadSIPRI(filename, options = {}) {
-  const { stripPercent = false } = options;
+  const { stripPercent = false, millions = false } = options;
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const filePath = path.join(
@@ -46,7 +46,7 @@ export async function loadSIPRI(filename, options = {}) {
       .map(([year, value]) => ({
         Entity: row.Entity,
         Year: +year,
-        Military_expenditure: value,
+        Military_expenditure: millions ? value * 1000000 : value,
       })),
   );
 }

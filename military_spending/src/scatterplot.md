@@ -41,7 +41,7 @@ const year = view(
 
 ```js
 import ScatterPlot from "./components/scatterPlot.js";
-import { filterMilitaryData, filterOnYear } from "./utils/data.js"
+import { filterMilitaryData, filterOnYear, createCountryToCodeMap } from "./utils/data.js"
 ```
 
 ```js
@@ -53,8 +53,17 @@ const militaryData = filterMilitaryData(rawAbsolute)
 ```
 
 ```js
+const absoluteData = await FileAttachment("data/absolute.csv").csv({ typed: true });
+console.log(absoluteData)
+```
+
+```js
+const countryToCode = createCountryToCodeMap(militaryData);
+```
+
+```js
 const militaryLookup = new Map(
-  militaryData.map(d => [`${d.Code}-${d.Year}`, d])
+  absoluteData.map(d => [`${countryToCode.get(d.Entity)}-${d.Year}`, d])
 );
 ```
 

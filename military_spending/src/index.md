@@ -14,16 +14,7 @@ import { ToggleButtons } from "./components/toggleButton.js"
 ```
 
 ```js
-const rawAbsolute = await FileAttachment(
-  "data/military-spending-sipri.csv",
-).csv({ typed: true });
-const absoluteData = rawAbsolute.filter(
-  (d) => !d.Entity.includes("(SIPRI)") && d.Entity != "World",
-);
-absoluteData.forEach((d) => {
-  d.Military_expenditure = d["Military expenditure"];
-  delete d["Military expenditure"];
-});
+const absoluteData = await FileAttachment("data/absolute.csv").csv({ typed: true });
 ```
 
 ```js
@@ -80,7 +71,7 @@ const mapType = view(
 
 ```js
 const rangeMap = {
-  absolute: [1949, 2024],
+  absolute: [1949, 2025],
   capita: [1988, 2025],
   govt: [1988, 2025],
   gdp: [1949, 2025]
@@ -88,7 +79,7 @@ const rangeMap = {
 const year = view(
   Inputs.range(rangeMap[dataType.toLowerCase()], {
     step: 1,
-    value: 2024,
+    value: 2025,
     label: "Year",
   }),
 );

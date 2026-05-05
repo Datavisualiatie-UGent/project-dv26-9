@@ -37,11 +37,7 @@ import { filterMilitaryData, filterOnYear } from "./utils/data.js"
 ```
 
 ```js
-const rawAbsolute = await FileAttachment(
-  "data/military-spending-sipri.csv",
-).csv({ typed: true });
-
-const militaryData = filterMilitaryData(rawAbsolute)
+const militaryData = await FileAttachment("data/absolute.csv").csv({ typed: true });
 ```
 
 ```js
@@ -83,6 +79,5 @@ const top5_sorted = top5().sort((a, b) =>
   d3.ascending(a.Year, b.Year)
 );
 ```
-
 
 ---

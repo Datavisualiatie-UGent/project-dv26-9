@@ -23,7 +23,7 @@ const colorMap = {
 };
 
 const labelMap = {
-  absolute: "Military expenditure in constant 2023 USD (logarithmic scale)",
+  absolute: "Military expenditure in constant 2025 USD (logarithmic scale)",
   capita: "Military spending per capita",
   govt: "Share of government spending",
   gdp: "Share of Gross Domestic Product",
