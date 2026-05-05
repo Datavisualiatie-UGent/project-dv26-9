@@ -30,15 +30,15 @@ const dataMap = {
 ```
 
 ```js
-const capitaData = await FileAttachment("data/capita.csv").csv({ typed: true });
+const capitaData = await FileAttachment("data/capita2.csv").csv({ typed: true });
 ```
 
 ```js
-const govtData = await FileAttachment("data/govt.csv").csv({ typed: true });
+const govtData = await FileAttachment("data/govt2.csv").csv({ typed: true });
 ```
 
 ```js
-const gdpData = await FileAttachment("data/gdp.csv").csv({ typed: true });
+const gdpData = await FileAttachment("data/gdp2.csv").csv({ typed: true });
 ```
 
 ```js
@@ -78,9 +78,9 @@ const dataType = view(
 ```js
 const rangeMap = {
   absolute: [1949, 2024],
-  capita: [1988, 2024],
-  govt: [1988, 2024],
-  gdp: [1949, 2024],
+  capita: [1988, 2025],
+  govt: [1988, 2025],
+  gdp: [1949, 2025],
 };
 const year = view(
   Inputs.range(rangeMap[dataType.toLowerCase()], {
