@@ -11,6 +11,14 @@ theme: "ocean-floor"
   <h1>Effect of conflicts on Military Spending</h1>
 </div>
 
+<div class="summary">
+  <h2>
+  This plot shows the military expenditure of Ukraine and Russia over time, with a focus on the period around the conflict that started in 2022. The plot allows us to see how the military spending of both countries has evolved before, during, and after the conflict. 
+  </br></br>
+  We can observe that both countries had a significant increase in military spending around the time of the conflict, with Russia's expenditure being notably higher than Ukraine's. 
+  </h2>
+</div>
+
 <div class=container-base>
   ${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: 2022, endOfConflict: undefined })}
 </div>

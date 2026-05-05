@@ -72,7 +72,7 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
             startOfConflict != null && Plot.text([startOfConflict], {
                 x: d => d,
                 frameAnchor: "top",
-                dx: -30,
+                dx: 0,
                 dy: -40,
                 text: () => "Start\nof\nconflict",
                 textAnchor: "middle",
@@ -88,7 +88,7 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
             endOfConflict != null && Plot.text([endOfConflict], {
                 x: d => d,
                 frameAnchor: "top",
-                dx: 30,
+                dx: 0,
                 dy: -40,
                 text: () => "End\nof\nconflict",
                 textAnchor: "middle",
@@ -102,7 +102,7 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
             tickFormat: d => `${d}`
         },
         y: {
-            label: "Military expenditure in USD (×10⁹)",
+            label: "Military expenditure (billion USD)",
             grid: true,
             tickFormat: d => d / (10**9)  // divide by 1000 for labels
         }

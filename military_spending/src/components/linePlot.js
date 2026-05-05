@@ -26,7 +26,7 @@ const formatValueOnYLabel = (type) => {
   }
 
   else if (type === "absolute") {
-    return "Military expenditure in USD (×10⁹)";
+    return "Military expenditure (billion USD)";
   } 
 
   else if (type === "capita") {
