@@ -23,8 +23,12 @@ const formatValue = (value, type) => {
 };
 
 export default function BarPlot({ dataForSelectedCountries, dataType }) {
+  if (dataForSelectedCountries.length === 0) {
+    return "";
+  }
   return Plot.plot({
     marginLeft: 100, // adds padding on the left for long country names
+    marginRight:75, // adds padding on the right for tooltip
     marks: [
       Plot.ruleX([0]),
       Plot.barX(dataForSelectedCountries, {
@@ -33,17 +37,13 @@ export default function BarPlot({ dataForSelectedCountries, dataType }) {
         sort: { y: "x", reverse: true },
         fill: "steelblue",
       }),
-      Plot.tip(
-        dataForSelectedCountries,
-        Plot.pointerY({
-          y: "Entity",
-          x: "Military_expenditure",
-          title: (d) => formatValue(d.Military_expenditure, dataType.toLowerCase()),
-          textPadding: 7.5,
-          anchor: "right"
-        }),
-        
-      ),
+      Plot.text(dataForSelectedCountries, {
+        y: "Entity",
+        x: "Military_expenditure",
+        dx: 5,
+        text: (d) => formatValue(d.Military_expenditure, dataType.toLowerCase()),
+        textAnchor: "start"
+      }),
     ],
     x: {
       label: labelMap[dataType],

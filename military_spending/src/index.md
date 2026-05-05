@@ -6,9 +6,11 @@ theme: "ocean-floor"
 <div class="hero">
   <h1>Military spendings around the world</h1>
 </div>
+<link rel="stylesheet" href="./style/base.css">
 
 ```js
 import { spendingsMap } from "./components/spendingsMap.js";
+import { ToggleButtons } from "./components/toggleButton.js"
 ```
 
 ```js
@@ -25,15 +27,15 @@ absoluteData.forEach((d) => {
 ```
 
 ```js
-const capitaData = await FileAttachment("data/capita.csv").csv({ typed: true });
+const capitaData = await FileAttachment("data/capita2.csv").csv({ typed: true });
 ```
 
 ```js
-const govtData = await FileAttachment("data/govt.csv").csv({ typed: true });
+const govtData = await FileAttachment("data/govt2.csv").csv({ typed: true });
 ```
 
 ```js
-const gdpData = await FileAttachment("data/gdp.csv").csv({ typed: true });
+const gdpData = await FileAttachment("data/gdp2.csv").csv({ typed: true });
 ```
 
 ```js
@@ -69,9 +71,25 @@ const dataType = view(
 
 ```js
 const mapType = view(
-  Inputs.radio(["Map", "Globe"], {
-    value: "Map",
-    label: "View",
+  ToggleButtons({
+    options: ["Map", "Globe"],
+    initial: "Map",
+  })
+);
+```
+
+```js
+const rangeMap = {
+  absolute: [1949, 2024],
+  capita: [1988, 2025],
+  govt: [1988, 2025],
+  gdp: [1949, 2025]
+};
+const year = view(
+  Inputs.range(rangeMap[dataType.toLowerCase()], {
+    step: 1,
+    value: 2024,
+    label: "Year",
   }),
 );
 ```
@@ -161,22 +179,6 @@ if (mapType === "Map") rotationState.current[1] = 0;
     }
   </div>
 </div>
-
-```js
-const rangeMap = {
-  absolute: [1949, 2024],
-  capita: [1988, 2024],
-  govt: [1988, 2024],
-  gdp: [1949, 2024]
-};
-const year = view(
-  Inputs.range(rangeMap[dataType.toLowerCase()], {
-    step: 1,
-    value: 2024,
-    label: "Year",
-  }),
-);
-```
 
 ```js
 const selectedData = dataMap[dataType];

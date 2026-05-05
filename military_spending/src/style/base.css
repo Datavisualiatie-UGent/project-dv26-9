@@ -115,3 +115,32 @@ option {
 .inputs-3a86ea input[type="range"] {
   width: 150px;
 }
+
+.toggle-group {
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background-color: rgba(39, 52, 128, 0.1);
+  border: 1px solid rgba(23, 38, 122, 0.663);
+}
+
+.toggle-group button {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--theme-foreground);
+  border-color: rgba(23, 38, 122, 0.663);
+}
+
+.toggle-group button:hover {
+  background: var(--theme-background);
+}
+
+.toggle-group button.active {
+  background: var(--theme-foreground);
+  color: var(--theme-background);
+}
