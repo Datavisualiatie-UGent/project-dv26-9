@@ -3,14 +3,182 @@ toc: false
 theme: "ocean-floor"
 ---
 
-<div class="hero">
-  <h1>Military spendings around the world</h1>
-</div>
 <link rel="stylesheet" href="./style/base.css">
+<link rel="stylesheet" href="./style/barPlot.css">
+
+<div class="hero">
+  <h1>Military Spending of the World</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. 
+  This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
+  </br></br>
+  Each point on the line represents the total absolute military expenditure for that year, measured in constant 2024 USD.
+  Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year, providing insights into how global defense spending has changed over time.
+  </h2>
+</div>
+
+<div class="container-base">
+  ${LinePlot({ data: linePlotWorldData, dataType: "Absolute" })}
+</div>
+
+
+---
+
+<div class="hero">
+  <h1>Military Spending of ${linePlotSelectedCountry}</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This interactive line chart displays the evolution of military expenditure over time for a selected country. The user can choose which country to view, and the chart updates to show its data across different years.
+  </br></br>
+  The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in constant 2024 USD), as a percentage of GDP, as a percentage of total government expenditure, or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
+  </br></br>
+  Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip: the year and the exact level of military expenditure in the chosen format. 
+  </h2>
+</div>
+
 
 ```js
-import { spendingsMap } from "./components/spendingsMap.js";
-import { ToggleButtons } from "./components/toggleButton.js"
+const linePlotDataType = view(
+  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
+    value: "Absolute",
+  }),
+);
+```
+
+
+```js
+const linePlotSelectedCountry = view(
+    Inputs.select(
+        [...new Set(absoluteData.map(d => d.Entity))],  // all unique countries
+        {value: "Belgium", class: "country-select"}  // default
+    )
+);
+```
+
+<div class=container-base>
+  ${LinePlot({ data: linePlotDataForSelectedCountry, dataType: linePlotDataType })}
+</div>
+
+
+
+
+---
+
+<div class="hero">
+  <h1>Compare Military Spending between countries</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  TODO
+  </h2>
+</div>
+
+
+```js
+const barPlotSelectedCountries = view(
+  CountrySelector({
+    countries: allCountries,
+    initial: ["Belgium"],
+  }),
+);
+```
+
+```js
+const barPlotDataType = view(
+  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
+    value: "Absolute",
+  }),
+);
+```
+
+```js
+const barPlotYear = view(
+  Inputs.range(rangeMap[barPlotDataType.toLowerCase()], {
+    step: 1,
+    value: 2025,
+    label: "Year",
+  }),
+);
+```
+
+<div class=container-base>
+  ${BarPlot({data: barPlotDataForSelectedCountries, dataType: barPlotDataType})}
+</div>
+
+
+
+
+---
+
+
+<div class="hero">
+  <h1>Military Spending against GDP</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This scatter plot shows the relationship between a country’s GDP and its military expenditure for a selected year. Each point represents a country, positioned horizontally according to its GDP and vertically according to how much it spends on the military.
+  </br></br>
+  The x-axis uses a logarithmic scale to better display countries with very different economic sizes, while the y-axis shows military expenditure in absolute terms (in billions of USD). By selecting a specific year, the plot reflects the situation for that time period, allowing comparison of how economic size relates to defense spending across countries.
+  </h2>
+</div>
+
+
+```js
+const scatterPlotYear = view(
+  Inputs.range([1960, 2024], {
+    step: 1,
+    value: 2024,
+    label: "Year",
+  }),
+);
+```
+
+<div class=container-base>
+  ${ScatterPlot({ data: scatterPlotDataForSelectedYear })}
+</div>
+
+
+
+
+---
+
+<div class="hero">
+  <h1>Top 5 Military Spending Countries through time</h1>
+</div>
+
+<div class="summary">
+  <h2>
+  This plot shows the top 5 countries with the highest military spending for each year. The rank of each country is determined by its military expenditure compared to other countries in that year. The plot allows us to see how the rankings of countries have changed over time.
+  </br></br>
+  That way we can for example see that the United States has consistently been the country with the highest military spending, while other countries like the UK and Germany have also been in the top 5 for many years.
+  </br></br>
+  Another interesting observation is that since 2000, China has been rising in the ranks and has become one of the top spenders in recent years.
+  While the UK has dropped to the bottom / out of the top 5 in recent years.
+  </h2>
+</div>
+
+<div>
+  ${RankPlot({ data: top5_sorted, selected: "" })}
+</div>
+
+
+
+
+```js
+import { filterMilitaryData, filterOnCountries, filterOnYear, createCountryToCodeMap } from "./utils/data.js"
+
+import LinePlot from "./components/linePlot.js";
+import BarPlot from "./components/barPlot.js";
+import CountrySelector from "./components/countrySelector.js";
+import ScatterPlot from "./components/scatterPlot.js";
+import RankPlot from "./components/topSpendingRankPlot.js";
 ```
 
 ```js
@@ -30,6 +198,16 @@ const gdpData = await FileAttachment("data/gdp2.csv").csv({ typed: true });
 ```
 
 ```js
+const absoluteGDPData = await FileAttachment("data/gdp_of_countries.csv").csv({ typed: true });
+```
+
+```js
+const rawAbsolute = await FileAttachment("data/military-spending-sipri.csv").csv({ typed: true });
+
+const militaryData = filterMilitaryData(rawAbsolute)
+```
+
+```js
 const dataMap = {
   Absolute: await absoluteData,
   Capita: capitaData,
@@ -39,227 +217,119 @@ const dataMap = {
 ```
 
 ```js
-const countriesGeo = await FileAttachment("data/countries.geo.json").json();
-const countries = topojson.feature(
-  countriesGeo,
-  countriesGeo.objects.countries,
-);
-```
-
-```js
-const rotationState = {
-  current: [0, 0, 0],
-};
-```
-
-```js
-const dataType = view(
-  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
-    value: "Absolute",
-  }),
-);
-```
-
-```js
-const mapType = view(
-  ToggleButtons({
-    options: ["Map", "Globe"],
-    initial: "Map",
-  })
-);
-```
-
-```js
 const rangeMap = {
   absolute: [1949, 2025],
   capita: [1988, 2025],
   govt: [1988, 2025],
-  gdp: [1949, 2025]
+  gdp: [1949, 2025],
 };
-const year = view(
-  Inputs.range(rangeMap[dataType.toLowerCase()], {
-    step: 1,
-    value: 2025,
-    label: "Year",
-  }),
+```
+
+```js
+const allCountries = [...new Set(absoluteData.map((d) => d.Entity))];
+```
+
+```js
+const countryToCode = createCountryToCodeMap(militaryData);
+```
+
+
+```js
+const barPlotDataForSelectedCountries = dataMap[barPlotDataType].filter(
+  (d) => barPlotSelectedCountries.includes(d.Entity) && d.Year === barPlotYear,
 );
 ```
 
+
 ```js
-let raf = null;
+const linePlotDataForSelectedCountry = filterOnCountries(dataMap[linePlotDataType], [linePlotSelectedCountry])
+```
 
-function scheduleRender() {
-  if (raf) return;
-  raf = requestAnimationFrame(() => {
-    render(container.clientWidth);
-    raf = null;
-  });
-}
+```js
+const linePlotWorldData = (() => {
+  const data = absoluteData;
+  const byYear = new Map();
 
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
-}
+  for (const d of data) {
+    const year = d.Year;
+    const value = d.Military_expenditure; // adjust if needed
 
-let container = html`<div></div>`;
-function render(width) {
-  const chart = spendingsMap(
-    countries,
-    access_year,
-    geoToEntityMap,
-    maxExpenditure,
-    dataType.toLowerCase(),
-    mapType,
-    width,
-    rotationState.current,
-  );
-
-  container.replaceChildren(chart);
-}
-let dragging = false;
-let lastX = 0;
-let lastY = 0;
-
-container.addEventListener("mousedown", (e) => {
-  dragging = true;
-  lastX = e.clientX;
-  lastY = e.clientY;
-});
-
-window.addEventListener("mouseup", () => {
-  dragging = false;
-});
-
-window.addEventListener("mousemove", (e) => {
-  if (!dragging) return;
-
-  const dx = e.clientX - lastX;
-  lastX = e.clientX;
-  rotationState.current[0] += dx * 0.5;
-
-  if (mapType === "Globe") {
-    const dy = e.clientY - lastY;
-    lastY = e.clientY;
-    rotationState.current[1] = clamp(
-      rotationState.current[1] - dy * 0.3,
-      -60,
-      60,
-    );
+    byYear.set(year, (byYear.get(year) || 0) + value);
   }
 
-  scheduleRender(container.clientWidth);
-});
-```
-
-```js
-mapType; // Reset y rotation when map is changed
-if (mapType === "Map") rotationState.current[1] = 0;
-```
-
-<div style="
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 2rem 0;
-">
-  <div class="map-container">
-    ${
-      resize((width) => {
-        render(width);
-        return container;
-      })
-    }
-  </div>
-</div>
-
-```js
-const selectedData = dataMap[dataType];
-const dataForYear = selectedData.filter((d) => d.Year === year);
-const access_year = new Map(
-  dataForYear.map(({ Entity, Military_expenditure }) => [
-    Entity,
-    Military_expenditure,
-  ]),
-);
-
-const maxExpenditure = Math.max(...Array.from(access_year.values()));
-```
-
-```js
-const entitiesFile = await FileAttachment("data/entities.txt").text();
-const geoFile = await FileAttachment("data/geo_countries.txt").text();
-const geoNames = geoFile.split("\n").map((d) => d.trim());
-const entityNames = entitiesFile.split("\n").map((d) => d.trim());
-
-const geoToEntityMap = (() => {
-  const map = {};
-
-  const len = Math.min(entityNames.length, geoNames.length); // avoid out-of-bounds
-
-  for (let i = 0; i < len; i++) {
-    const entity = entityNames[i];
-    const geo = geoNames[i];
-
-    map[geo] = entity; // direct 1-to-1 mapping
-  }
-
-  return map;
+  return Array.from(byYear, ([Year, Military_expenditure]) => ({
+    Entity: "World",
+    Year,
+    Military_expenditure
+  }))
+  .sort((a, b) => a.Year - b.Year); // sort by year
 })();
 ```
 
----
 
-<style>
 
-.map-container {
-  width: 100%;
-  max-width: 1200px;"
-}
+```js
+const scatterPlotMilitaryLookup = new Map(
+  absoluteData.map(d => [`${countryToCode.get(d.Entity)}-${d.Year}`, d])
+);
+```
 
-.map-container path {
-  cursor: auto;
-}
+```js
+const scatterPlotMilitaryJoinedWithGDP = absoluteGDPData
+  .map(g => {
+    const m = scatterPlotMilitaryLookup.get(`${g.Code}-${g.Year}`);
+    return m
+      ? {
+          Country: g.Country,
+          Code: g.Code,
+          Year: g.Year,
+          gdp: g.GDP,
+          military_expenditure: m.Military_expenditure
+        }
+      : null;
+  })
+  .filter(Boolean);
+```
 
-.map-container:hover {
-  cursor: grab;
-}
+```js
+const scatterPlotDataForSelectedYear = filterOnYear(scatterPlotMilitaryJoinedWithGDP, scatterPlotYear)
+```
 
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--sans-serif);
-  margin: 4rem 0 8rem;
-  text-wrap: balance;
-  text-align: center;
-}
+```js
+const top5 = () => {
+  const byYear = new Map();
 
-.hero h1 {
-  margin: 1rem 0;
-  padding: 1rem 0;
-  max-width: none;
-  font-size: 14vw;
-  font-weight: 900;
-  line-height: 1;
-  background: linear-gradient(30deg, var(--theme-foreground-focus), currentColor);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  absoluteData.forEach(d => {
+    (byYear.get(d.Year) ?? byYear.set(d.Year, []).get(d.Year)).push(d);
+  });
 
-.hero h2 {
-  margin: 0;
-  max-width: 34em;
-  font-size: 20px;
-  font-style: initial;
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--theme-foreground-muted);
-}
+  const all = [...byYear].flatMap(([year, values]) =>
+    values
+      .sort((a, b) => b.Military_expenditure - a.Military_expenditure)
+      .slice(0, 6)
+      .map((d, i) => ({
+        Country: d.Entity,
+        Year: year,
+        value: d.Military_expenditure,
+        rank: i + 1
+      }))
+  );
 
-@media (min-width: 640px) {
-  .hero h1 {
-    font-size: 90px;
+  // find best (minimum) rank per country
+  const bestRank = new Map();
+
+  for (const d of all) {
+    bestRank.set(d.Country, Math.min(bestRank.get(d.Country) ?? Infinity, d.rank));
   }
+  
+  // keep only countries that ever reach top 5
+  return all.filter(d => bestRank.get(d.Country) <= 5);
 }
+```
 
-</style>
+```js
+const top5_sorted = top5().sort((a, b) =>
+  d3.ascending(a.Country, b.Country) ||
+  d3.ascending(a.Year, b.Year)
+);
+```

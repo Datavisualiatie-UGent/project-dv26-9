@@ -1,5 +1,5 @@
 ---
-title: "NATO gdp goal"
+title: "NATO defense spending vs 5% goal"
 toc: false
 theme: "ocean-floor"
 ---

@@ -37,15 +37,14 @@ import { filterMilitaryData, filterOnYear } from "./utils/data.js"
 ```
 
 ```js
-const militaryData = await FileAttachment("data/absolute.csv").csv({ typed: true });
+const absoluteData = await FileAttachment("data/absolute.csv").csv({ typed: true });
 ```
 
 ```js
-
 const top5 = () => {
   const byYear = new Map();
 
-  militaryData.forEach(d => {
+  absoluteData.forEach(d => {
     (byYear.get(d.Year) ?? byYear.set(d.Year, []).get(d.Year)).push(d);
   });
 

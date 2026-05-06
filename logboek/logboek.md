@@ -75,7 +75,7 @@ Maarten:
 
 Nyah: 
 - line chart
-- conflict linechart
+- conflict line chart
 - GDP-dataset
 - scatter plot
 - NAVO GDP plot

@@ -1,47 +1,34 @@
 import * as Plot from "npm:@observablehq/plot";
+import { formatValueOnYAxis } from "../utils/formatting.js";
 
 const labelMap = {
-  Absolute: "",
-  Capita: "",
-  Govt: "",
-  Gdp: "",
+  Absolute: "Military expenditure in USD",
+  Capita: "Military expenditure per capita in USD",
+  Govt: "Military expenditure as percentage of government expenditure",
+  Gdp: "Military expenditure as percentage of GDP",
 };
 
-const formatValue = (value, type) => {
-  if (value == null || isNaN(value)) return "No data";
-
-  if (type === "govt" || type === "gdp") {
-    return `${value}%`;
-  }
-
-  return (
-    new Intl.NumberFormat("en-US", {
-      notation: "compact",
-      maximumFractionDigits: 1,
-    }).format(value) + " USD"
-  );
-};
-
-export default function BarPlot({ dataForSelectedCountries, dataType }) {
-  if (dataForSelectedCountries.length === 0) {
+export default function BarPlot({ data, dataType }) {
+  if (data.length === 0) {
     return "";
   }
   return Plot.plot({
     marginLeft: 100, // adds padding on the left for long country names
     marginRight:75, // adds padding on the right for tooltip
+    marginTop: 40, // adds padding on the top for x-axis label
     marks: [
       Plot.ruleX([0]),
-      Plot.barX(dataForSelectedCountries, {
+      Plot.barX(data, {
         y: "Entity",
         x: "Military_expenditure",
         sort: { y: "x", reverse: true },
         fill: "steelblue",
       }),
-      Plot.text(dataForSelectedCountries, {
+      Plot.text(data, {
         y: "Entity",
         x: "Military_expenditure",
         dx: 5,
-        text: (d) => formatValue(d.Military_expenditure, dataType.toLowerCase()),
+        text: (d) => formatValueOnYAxis(d.Military_expenditure, dataType.toLowerCase())  + " USD",
         textAnchor: "start"
       }),
     ],
@@ -49,7 +36,7 @@ export default function BarPlot({ dataForSelectedCountries, dataType }) {
       label: labelMap[dataType],
       grid: true,
       axis: "top",
-      tickFormat: (d) => formatValue(d, dataType.toLowerCase()),
+      tickFormat: (d) => formatValueOnYAxis(d, dataType.toLowerCase()),
     },
     y: {
       label: "Country",
