@@ -14,7 +14,7 @@ Voor de absolute GDP data, hebben we een dataset van de World Bank gebruikt, die
 
 
 ## Databron
-Stockholm International Peace Research Institute (2025) – with minor processing by Our World in Data. “Military spending” [dataset]. Stockholm International Peace Research Institute, “SIPRI Military Expenditure Database” [original data]. Retrieved March 9, 2026 from https://archive.ourworldindata.org/20260304-094028/grapher/military-spending-sipri.html (archived on March 4, 2026).
+Stockholm International Peace Research Institute (2026) – with minor processing by Our World in Data. “Military spending” [dataset]. Stockholm International Peace Research Institute, “SIPRI Military Expenditure Database” [original data]. Retrieved May 7, 2026 from https://archive.ourworldindata.org/20260428-145512/grapher/military-spending-sipri.html (archived on April 28, 2026).
 
 Dataset for GDP of all countries: World Bank
 https://data.worldbank.org/indicator/NY.GDP.MKTP.CD
