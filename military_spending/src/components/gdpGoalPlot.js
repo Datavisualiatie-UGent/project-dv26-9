@@ -5,10 +5,12 @@ export default function GDPGoalPlot({ data }) {
         marginLeft: 100,
         marginRight: 25,
         marginTop: 40,
-        height: 600,
+        width: 800,
         x: {
             label: "% of gdp spent on military",
-            domain: [0, 5]
+            domain: [0, 5],
+            ticks: [0, 1, 2, 3, 4, 5],
+            tickFormat: d => `${d}`,
         },
         y: {
             grid: true,
@@ -20,25 +22,25 @@ export default function GDPGoalPlot({ data }) {
             Plot.ruleX([0]),
             
             Plot.dot(data, {
-            y: "country",
-            x: "percentage_of_military_expenditure",
-            fill: "steelblue",
-            r: 3,
-            tip: true,
+                y: "country",
+                x: "percentage_of_military_expenditure",
+                fill: "steelblue",
+                r: 3,
+                tip: true,
             }),
             
             Plot.ruleX([5], {
-            stroke: "red",
-            strokeWidth: 2
+                stroke: "red",
+                strokeWidth: 2
             }),
             
             Plot.text([5], {
-            x: d => d,
-            dy: -35,                 // Shifts the text 10px up from the frame top
-            frameAnchor: "top",      // Anchors the text to the top of the chart
-            text: ["Goal to\nreach by\n2035"], 
-            fill: "red",
-            fontWeight: "bold"
+                x: d => d,
+                dy: -35,                 // Shifts the text 10px up from the frame top
+                frameAnchor: "top",      // Anchors the text to the top of the chart
+                text: ["Goal to\nreach by\n2035"], 
+                fill: "red",
+                fontWeight: "bold"
             })
             
         ]
