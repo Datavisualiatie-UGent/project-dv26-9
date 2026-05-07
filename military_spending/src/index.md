@@ -219,9 +219,7 @@ const absoluteGDPData = await FileAttachment("data/gdp_of_countries.csv").csv({
 ```
 
 ```js
-const rawAbsolute = await FileAttachment(
-  "data/military-spending-sipri.csv",
-).csv({ typed: true });
+const rawAbsolute = await FileAttachment("data/military-spending-sipri.csv",).csv({ typed: true });
 
 const militaryData = filterMilitaryData(rawAbsolute);
 ```
