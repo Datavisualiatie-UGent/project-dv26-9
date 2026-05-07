@@ -11,6 +11,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: military_spending
     permissions:
       contents: read
       pages: write
@@ -29,7 +32,7 @@ jobs:
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: military_spending/dist
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
