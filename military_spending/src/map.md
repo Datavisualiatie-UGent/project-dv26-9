@@ -53,13 +53,13 @@ const rotationState = {
 };
 ```
 
-```js
-const dataType = view(
-  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
-    value: "Absolute",
-  }),
-);
-```
+<div class="summary">
+<h2>
+This interactive map visualizes how military spending has evolved around the world over time. Using the different display modes, countries can be compared through four indicators, each offering a different perspective on defense expenditure.
+</h2>
+</div>
+
+<div class="input-container">
 
 ```js
 const mapType = view(
@@ -69,6 +69,17 @@ const mapType = view(
   })
 );
 ```
+
+<div style="max-width: 200px;">
+
+```js
+const dataType = view(
+  Inputs.select(["Absolute", "Capita", "Govt", "Gdp"], {
+    value: "Absolute",
+  }),
+);
+```
+</div>
 
 ```js
 const rangeMap = {
@@ -85,6 +96,7 @@ const year = view(
   }),
 );
 ```
+</div>
 
 ```js
 let raf = null;
@@ -160,7 +172,6 @@ if (mapType === "Map") rotationState.current[1] = 0;
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 2rem 0;
 ">
   <div class="map-container">
     ${
@@ -211,9 +222,20 @@ const geoToEntityMap = (() => {
 
 <style>
 
+.input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4rem;
+  height: 5rem;
+}
+
 .map-container {
   width: 100%;
-  max-width: 1200px;"
+  max-width: 1200px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .map-container path {
@@ -250,7 +272,7 @@ const geoToEntityMap = (() => {
 .hero h2 {
   margin: 0;
   max-width: 34em;
-  font-size: 20px;
+  font-size: 15px;
   font-style: initial;
   font-weight: 500;
   line-height: 1.5;

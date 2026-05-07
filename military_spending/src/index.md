@@ -1,46 +1,43 @@
 ---
-toc: false
+toc: true
 theme: "ocean-floor"
+title: Military Spending Analysis
 ---
 
 <link rel="stylesheet" href="./style/base.css">
 <link rel="stylesheet" href="./style/barPlot.css">
 
 <div class="hero">
-  <h1>Military Spending of the World</h1>
+  <h1>Military spending of the World</h1>
 </div>
 
-<div class="summary">
-  <h2>
-  This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. 
-  This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
-  </br></br>
-  Each point on the line represents the total absolute military expenditure for that year, measured in constant 2024 USD.
-  Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year, providing insights into how global defense spending has changed over time.
-  </h2>
+<div style="width: 100%">
+This line chart aggregates the military expenditure of all countries to show the total global spending on defense over time. This allows us to see the overall trend in military spending worldwide, and how it has evolved across different years.
+</div>
+</br>
+<div style="width: 100%">
+Each point on the line represents the total absolute military expenditure for that year, measured in constant 2024 USD. Hovering over the chart reveals a tooltip with the year and the total global military expenditure for that year.
 </div>
 
 <div class="container-base">
-  ${LinePlot({ data: linePlotWorldData, dataType: "Absolute" })}
+${LinePlot({ data: linePlotWorldData, dataType: "Absolute" })}
 </div>
 
+## Military spending per country
 
----
-
-<div class="hero">
-  <h1>Military Spending of ${linePlotSelectedCountry}</h1>
+<div style="width: 100%">
+This interactive line chart displays the evolution of military expenditure over time for a selected country. The user can choose which country to view, and the chart updates to show its data across different years.
+<div style="width: 100%">
+</br>
+</div>
+The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in constant 2024 USD), as a percentage of GDP, as a percentage of total government expenditure,or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
+</div>
+</br>
+<div style="width: 100%">
+Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip: the year and the exact level of military expenditure in the chosen format.
 </div>
 
-<div class="summary">
-  <h2>
-  This interactive line chart displays the evolution of military expenditure over time for a selected country. The user can choose which country to view, and the chart updates to show its data across different years.
-  </br></br>
-  The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in constant 2024 USD), as a percentage of GDP, as a percentage of total government expenditure, or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
-  </br></br>
-  Each point on the line corresponds to a specific year, and hovering over the chart reveals detailed values through a tooltip: the year and the exact level of military expenditure in the chosen format. 
-  </h2>
-</div>
-
+<div style="display: flex; align-items: center">
 
 ```js
 const linePlotDataType = view(
@@ -50,35 +47,34 @@ const linePlotDataType = view(
 );
 ```
 
-
 ```js
 const linePlotSelectedCountry = view(
-    Inputs.select(
-        [...new Set(absoluteData.map(d => d.Entity))],  // all unique countries
-        {value: "Belgium", class: "country-select"}  // default
-    )
+  Inputs.select(
+    [...new Set(absoluteData.map((d) => d.Entity))], // all unique countries
+    { value: "Belgium", class: "country-select" }, // default
+  ),
 );
 ```
 
-<div class=container-base>
-  ${LinePlot({ data: linePlotDataForSelectedCountry, dataType: linePlotDataType })}
 </div>
 
-
-
-
----
-
-<div class="hero">
-  <h1>Compare Military Spending between countries</h1>
+<div class="container-base">
+${LinePlot({ data: linePlotDataForSelectedCountry, dataType: linePlotDataType })}
 </div>
 
-<div class="summary">
-  <h2>
-  TODO
-  </h2>
-</div>
+## Comparing military spending between countries
 
+<div style="width: 100%">
+This interactive bar chart allows users to compare the military spending of multiple countries for aselected year. Countries can be selected dynamically, after which the chart displays their militaryexpenditure side by side, making differences in spending easier to observe and compare.
+</div>
+</br>
+<div style="width: 100%">
+Different representations of military expenditure are available through the selector above the chart.Spending can be shown in absolute terms (constant 2024 USD), per capita, as a percentage of totalgovernment spending, or as a percentage of GDP. This makes it possible to compare countries not only byraw spending power, but also relative to population size, economic output, or government priorities.
+</div>
+</br>
+<div style="width: 100%">
+Each bar represents one country, and hovering over a bar reveals the exact military expenditure value forthe selected year and metric. By changing the year, users can also explore how comparisons between countries evolve over time.
+</div>
 
 ```js
 const barPlotSelectedCountries = view(
@@ -107,28 +103,19 @@ const barPlotYear = view(
 );
 ```
 
-<div class=container-base>
-  ${BarPlot({data: barPlotDataForSelectedCountries, dataType: barPlotDataType})}
+<div class="container-base">
+${BarPlot({data: barPlotDataForSelectedCountries, dataType: barPlotDataType})}
 </div>
 
+## Military spending against GDP
 
-
-
----
-
-
-<div class="hero">
-  <h1>Military Spending against GDP</h1>
+<div style="width: 100%">
+This scatter plot shows the relationship between a country’s GDP and its military expenditure for a selected year. Each point represents a country, positioned horizontally according to its GDP and vertically according to how much it spends on the military.
 </div>
-
-<div class="summary">
-  <h2>
-  This scatter plot shows the relationship between a country’s GDP and its military expenditure for a selected year. Each point represents a country, positioned horizontally according to its GDP and vertically according to how much it spends on the military.
-  </br></br>
-  The x-axis uses a logarithmic scale to better display countries with very different economic sizes, while the y-axis shows military expenditure in absolute terms (in billions of USD). By selecting a specific year, the plot reflects the situation for that time period, allowing comparison of how economic size relates to defense spending across countries.
-  </h2>
+</br>
+<div style="width: 100%">
+The x-axis uses a logarithmic scale to better display countries with very different economic sizes, while the y-axis shows military expenditure in absolute terms (in billions of USD). By selecting a specific year, the plot reflects the situation for that time period, allowing comparison of how economic size relates to defense spending across countries.
 </div>
-
 
 ```js
 const scatterPlotYear = view(
@@ -144,35 +131,33 @@ const scatterPlotYear = view(
   ${ScatterPlot({ data: scatterPlotDataForSelectedYear })}
 </div>
 
+## Top 5 Military spending Countries through time
 
-
-
----
-
-<div class="hero">
-  <h1>Top 5 Military Spending Countries through time</h1>
+<div style="width: 100%">
+This plot shows the top 5 countries with the highest military spending for each year. The rank of each country is determined by its military expenditure compared to other countries in that year. The plot allows us to see how the rankings of countries have changed over time.
 </div>
-
-<div class="summary">
-  <h2>
-  This plot shows the top 5 countries with the highest military spending for each year. The rank of each country is determined by its military expenditure compared to other countries in that year. The plot allows us to see how the rankings of countries have changed over time.
-  </br></br>
-  That way we can for example see that the United States has consistently been the country with the highest military spending, while other countries like the UK and Germany have also been in the top 5 for many years.
-  </br></br>
-  Another interesting observation is that since 2000, China has been rising in the ranks and has become one of the top spenders in recent years.
-  While the UK has dropped to the bottom / out of the top 5 in recent years.
-  </h2>
+</br>
+<div style="width: 100%">
+That way we can for example see that the United States has consistently been the country with the highest military spending, while other countries like the UK and Germany have also been in the top 5 for many years.
 </div>
-
-<div>
-  ${RankPlot({ data: top5_sorted, selected: "" })}
+</br>
+<div style="width: 100%">
+Another interesting observation is that since 2000, China has been rising in the ranks and has become one of the top spenders in recent years.
+While the UK has dropped to the bottom / out of the top 5 in recent years.
 </div>
+</br>
 
-
-
+<div style="width: 100%">
+${RankPlot({ data: top5_sorted, selected: "" })}
+</div>
 
 ```js
-import { filterMilitaryData, filterOnCountries, filterOnYear, createCountryToCodeMap } from "./utils/data.js"
+import {
+  filterMilitaryData,
+  filterOnCountries,
+  filterOnYear,
+  createCountryToCodeMap,
+} from "./utils/data.js";
 
 import LinePlot from "./components/linePlot.js";
 import BarPlot from "./components/barPlot.js";
@@ -182,11 +167,15 @@ import RankPlot from "./components/topSpendingRankPlot.js";
 ```
 
 ```js
-const absoluteData = await FileAttachment("data/absolute.csv").csv({ typed: true });
+const absoluteData = await FileAttachment("data/absolute.csv").csv({
+  typed: true,
+});
 ```
 
 ```js
-const capitaData = await FileAttachment("data/capita2.csv").csv({ typed: true });
+const capitaData = await FileAttachment("data/capita2.csv").csv({
+  typed: true,
+});
 ```
 
 ```js
@@ -198,13 +187,17 @@ const gdpData = await FileAttachment("data/gdp2.csv").csv({ typed: true });
 ```
 
 ```js
-const absoluteGDPData = await FileAttachment("data/gdp_of_countries.csv").csv({ typed: true });
+const absoluteGDPData = await FileAttachment("data/gdp_of_countries.csv").csv({
+  typed: true,
+});
 ```
 
 ```js
-const rawAbsolute = await FileAttachment("data/military-spending-sipri.csv").csv({ typed: true });
+const rawAbsolute = await FileAttachment(
+  "data/military-spending-sipri.csv",
+).csv({ typed: true });
 
-const militaryData = filterMilitaryData(rawAbsolute)
+const militaryData = filterMilitaryData(rawAbsolute);
 ```
 
 ```js
@@ -226,13 +219,12 @@ const rangeMap = {
 ```
 
 ```js
-const allCountries = [...new Set(absoluteData.map((d) => d.Entity))];
+const allCountries = [...new Set(absoluteData.map((d) => d.Entity))].sort();
 ```
 
 ```js
 const countryToCode = createCountryToCodeMap(militaryData);
 ```
-
 
 ```js
 const barPlotDataForSelectedCountries = dataMap[barPlotDataType].filter(
@@ -240,9 +232,11 @@ const barPlotDataForSelectedCountries = dataMap[barPlotDataType].filter(
 );
 ```
 
-
 ```js
-const linePlotDataForSelectedCountry = filterOnCountries(dataMap[linePlotDataType], [linePlotSelectedCountry])
+const linePlotDataForSelectedCountry = filterOnCountries(
+  dataMap[linePlotDataType],
+  [linePlotSelectedCountry],
+);
 ```
 
 ```js
@@ -260,23 +254,20 @@ const linePlotWorldData = (() => {
   return Array.from(byYear, ([Year, Military_expenditure]) => ({
     Entity: "World",
     Year,
-    Military_expenditure
-  }))
-  .sort((a, b) => a.Year - b.Year); // sort by year
+    Military_expenditure,
+  })).sort((a, b) => a.Year - b.Year); // sort by year
 })();
 ```
 
-
-
 ```js
 const scatterPlotMilitaryLookup = new Map(
-  absoluteData.map(d => [`${countryToCode.get(d.Entity)}-${d.Year}`, d])
+  absoluteData.map((d) => [`${countryToCode.get(d.Entity)}-${d.Year}`, d]),
 );
 ```
 
 ```js
 const scatterPlotMilitaryJoinedWithGDP = absoluteGDPData
-  .map(g => {
+  .map((g) => {
     const m = scatterPlotMilitaryLookup.get(`${g.Code}-${g.Year}`);
     return m
       ? {
@@ -284,7 +275,7 @@ const scatterPlotMilitaryJoinedWithGDP = absoluteGDPData
           Code: g.Code,
           Year: g.Year,
           gdp: g.GDP,
-          military_expenditure: m.Military_expenditure
+          military_expenditure: m.Military_expenditure,
         }
       : null;
   })
@@ -292,14 +283,17 @@ const scatterPlotMilitaryJoinedWithGDP = absoluteGDPData
 ```
 
 ```js
-const scatterPlotDataForSelectedYear = filterOnYear(scatterPlotMilitaryJoinedWithGDP, scatterPlotYear)
+const scatterPlotDataForSelectedYear = filterOnYear(
+  scatterPlotMilitaryJoinedWithGDP,
+  scatterPlotYear,
+);
 ```
 
 ```js
 const top5 = () => {
   const byYear = new Map();
 
-  absoluteData.forEach(d => {
+  absoluteData.forEach((d) => {
     (byYear.get(d.Year) ?? byYear.set(d.Year, []).get(d.Year)).push(d);
   });
 
@@ -311,25 +305,27 @@ const top5 = () => {
         Country: d.Entity,
         Year: year,
         value: d.Military_expenditure,
-        rank: i + 1
-      }))
+        rank: i + 1,
+      })),
   );
 
   // find best (minimum) rank per country
   const bestRank = new Map();
 
   for (const d of all) {
-    bestRank.set(d.Country, Math.min(bestRank.get(d.Country) ?? Infinity, d.rank));
+    bestRank.set(
+      d.Country,
+      Math.min(bestRank.get(d.Country) ?? Infinity, d.rank),
+    );
   }
-  
+
   // keep only countries that ever reach top 5
-  return all.filter(d => bestRank.get(d.Country) <= 5);
-}
+  return all.filter((d) => bestRank.get(d.Country) <= 5);
+};
 ```
 
 ```js
-const top5_sorted = top5().sort((a, b) =>
-  d3.ascending(a.Country, b.Country) ||
-  d3.ascending(a.Year, b.Year)
+const top5_sorted = top5().sort(
+  (a, b) => d3.ascending(a.Country, b.Country) || d3.ascending(a.Year, b.Year),
 );
 ```
