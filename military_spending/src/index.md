@@ -27,9 +27,10 @@ ${LinePlot({ data: linePlotWorldData, dataType: "Absolute" })}
 
 <div style="width: 100%">
 This interactive line chart displays the evolution of military expenditure over time for a selected country. The user can choose which country to view, and the chart updates to show its data across different years.
-<div style="width: 100%">
-</br>
 </div>
+</br>
+<div style="width: 100%">
+
 The chart offers several ways to represent military spending. It can be viewed in absolute terms (measured in constant 2024 USD), as a percentage of GDP, as a percentage of total government expenditure,or as spending per capita in USD. The vertical axis adjusts accordingly to reflect the selected metric.
 </div>
 </br>
@@ -150,6 +151,15 @@ While the UK has dropped to the bottom / out of the top 5 in recent years.
 <div style="width: 100%">
 ${RankPlot({ data: top5_sorted, selected: "" })}
 </div>
+
+## Data source
+
+All military expenditure data used in this analysis comes from:
+
+SIPRI Military Expenditure Database 2026  
+https://www.sipri.org/databases/milex
+
+The data is used under SIPRI’s fair use policy for non-commercial research and educational purposes.
 
 ```js
 import {

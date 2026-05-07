@@ -4,36 +4,30 @@ toc: false
 theme: "ocean-floor"
 ---
 
-
 <link rel="stylesheet" href="./style/base.css">
 
-<div class="hero">
-  <h1>Effect of war between Ukraine and Russia on Military Spending</h1>
-</div>
+# Effect of war between Ukraine and Russia on Military Spending
 
-<div class="summary">
-  <h2>
-  This plot shows the military expenditure of Ukraine and Russia over time, with a focus on the period around the conflict that started in 2022. The plot allows us to see how the military spending of both countries has evolved before, during, and after the conflict. 
-  </br></br>
-  We can observe that both countries had a significant increase in military spending around the time of the conflict, with Russia's expenditure being notably higher than Ukraine's. 
-  </h2>
-</div>
+This plot shows the military expenditure of Ukraine and Russia over time, with a focus on the period around the conflict that started in 2022. The plot allows us to see how the military spending of both countries has evolved before, during, and after the conflict.
+</br>
+We can observe that both countries had a significant increase in military spending around the time of the conflict, with Russia's expenditure being notably higher than Ukraine's.
 
-<div class=container-base>
-  ${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: 2022, endOfConflict: undefined })}
-</div>
-
+${ConflictLinePlot({ data: dataForSelectedCountry, startOfConflict: 2022, endOfConflict: undefined })}
 
 ```js
 import ConflictLinePlot from "./components/conflictLinePlot.js";
-import { filterMilitaryData, filterOnCountries } from "./utils/data.js"
+import { filterMilitaryData, filterOnCountries } from "./utils/data.js";
 ```
 
 ```js
-const absoluteData = await FileAttachment("data/absolute.csv").csv({ typed: true });
+const absoluteData = await FileAttachment("data/absolute.csv").csv({
+  typed: true,
+});
 ```
 
-
 ```js
-const dataForSelectedCountry = filterOnCountries(absoluteData, ["Ukraine", "Russia"])
+const dataForSelectedCountry = filterOnCountries(absoluteData, [
+  "Ukraine",
+  "Russia",
+]);
 ```

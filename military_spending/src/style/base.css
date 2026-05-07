@@ -35,6 +35,11 @@
   padding: 0rem 15rem;
 }
 
+h1 {
+  padding: 1rem 0px;
+  font-weight: 600;
+}
+
 h2 {
   padding: 1rem 0px;
   font-weight: 400;
