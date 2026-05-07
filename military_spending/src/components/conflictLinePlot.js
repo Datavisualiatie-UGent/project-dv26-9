@@ -10,13 +10,11 @@ const formatValueOnTooltip = (value) => {
 
 export default function ConflictLinePlot({ data, startOfConflict, endOfConflict }) {
     return Plot.plot({
-        //width: 850,
         y: {grid: true},
         color: {legend: true},
-        
         marginTop: 100,
-        marginRight: 50,
-        //marginLeft: 200,
+        width: 750,
+        height: 550,
         
         marks: [
             // Line plots

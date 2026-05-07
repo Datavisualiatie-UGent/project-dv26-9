@@ -12,15 +12,15 @@ title: Military Spending Analysis
 </div>
 
 <div class="introduction">
-Military expenditure is not just a number, it reflects a country’s priorities, economical situation, and geopolitical shifts. While some countries allocate large parts of their economy to defense, others maintain smaller but more stable budgets shaped by different historical and regional contexts. Over time, these patterns reveal how spending responds to wars, alliances, economic growth, and periods of global uncertainty.
+  Military expenditure is not just a number, it reflects a country’s priorities, economical situation, and geopolitical shifts. While some countries allocate large parts of their economy to defense, others maintain smaller but more stable budgets shaped by different historical and regional contexts. Over time, these patterns reveal how spending responds to wars, alliances, economic growth, and periods of global uncertainty.
 </div>
 </br>
 <div class="introduction">
-These visualizations are designed to make a massive, complex dataset feel approachable at a glance. Military spending numbers are often buried in long reports or static tables, but here they’re turned into something you can actually explore smoothly, interactively, and over time. This lets you compare countries side by side, track changes year by year, and see how military spending has evolved in response to an ever-changing world.
+  These visualizations are designed to make a massive, complex dataset feel approachable at a glance. Military spending numbers are often buried in long reports or static tables, but here they’re turned into something you can actually explore smoothly, interactively, and over time. This lets you compare countries side by side, track changes year by year, and see how military spending has evolved in response to an ever-changing world.
 </div>
 </br>
 <div class="introduction">
-Whether you’re interested in economics, geopolitics, or history, this provides a clear way to explore how countries invest in defense and the influences that shape those decisions.
+  Whether you’re interested in economics, geopolitics, or history, this provides a clear way to explore how countries invest in defense and the influences that shape those decisions.
 </div>
 </br></br></br>
 
@@ -37,7 +37,7 @@ Whether you’re interested in economics, geopolitics, or history, this provides
 </div>
 
 <div class="container-base">
-${LinePlot({ data: linePlotWorldData, dataType: "Absolute" })}
+  ${LinePlot({ data: linePlotWorldData, dataType: "Absolute" })}
 </div>
 
 ## Military spending per country
@@ -167,6 +167,15 @@ const scatterPlotYear = view(
 <div style="width: 100%">
   ${RankPlot({ data: top5_sorted, selected: "" })}
 </div>
+
+## Data source
+
+All military expenditure data used in this analysis comes from:
+
+SIPRI Military Expenditure Database 2026  
+https://www.sipri.org/databases/milex
+
+The data is used under SIPRI’s fair use policy for non-commercial research and educational purposes.
 
 ```js
 import {

@@ -4,9 +4,8 @@ title: "Spending around the world"
 theme: "ocean-floor"
 ---
 
-<div class="hero">
-  <h1>Military spendings around the world</h1>
-</div>
+## Military spendings around the world
+
 <link rel="stylesheet" href="./style/base.css">
 
 ```js
@@ -53,10 +52,8 @@ const rotationState = {
 };
 ```
 
-<div class="summary">
-<h2>
-This interactive map visualizes how military spending has evolved around the world over time. Using the different display modes, countries can be compared through four indicators, each offering a different perspective on defense expenditure.
-</h2>
+<div style="width: 100%">
+  This interactive map visualizes how military spending has evolved around the world over time. Using the different display modes, countries can be compared through four indicators, each offering a different perspective on defense expenditure.
 </div>
 
 <div class="input-container">
