@@ -164,7 +164,7 @@ const scatterPlotYear = view(
 </div>
 </br>
 
-<div style="width: 100%">
+<div style="width: 100%; margin-bottom: 6rem;">
   ${RankPlot({ data: top5_sorted, selected: "" })}
 </div>
 
