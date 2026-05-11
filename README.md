@@ -3,6 +3,8 @@
 Deze repository bevat visualisaties gebaseerd op de dataset over militaire uitgaven van Our World in Data.
 De data is afkomstig uit de SIPRI Military Expenditure Database en toont de jaarlijkse militaire uitgaven per land van 1949 tot en met 2025, uitgedrukt in US dollars.
 
+De website staat op github pages en is te vinden op: https://datavisualiatie-ugent.github.io/project-dv26-9/
+
 ## Data
 
 De dataset is beschikbaar als zip-bestand in de `/military_spending/src/data` folder.

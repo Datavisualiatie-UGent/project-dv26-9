@@ -4,14 +4,14 @@ Maarten Lambrecht, Nyah Van Wayenberge
 
 # 1: initiële ideeën voor visualisatie
 - **line chart** die de evolutie van militaire uitgaven per land toont door de jaren heen
-![line chart](/logboek/images/line_chart.png)
+![line chart](./images/line_chart.png)
 
 - **bar chart** die de militaire uitgaven van verschillende landen in een bepaald jaar vergelijkt
-![bar chart](/logboek/images/bar_chart_old.png)
+![bar chart](./images/bar_chart_old.png)
 
 - **wereldkaart** die via kleurschaal aanduidt hoeveel elk land uitgeeft aan militaire uitgaven in een bepaald jaar
-![world map](/logboek/images/world_map.png)
-![globe map](/logboek/images/globe.png)
+![world map](./images/world_map.png)
+![globe map](./images/globe.png)
 
 - **verhalende visualisatie (storytelling)**: Stacked bar charts die de militaire uitgaven van de NAVO-landen vergelijkt met die van Rusland. 1 plot zonder VS en 1 plot met VS, om te laten zien hoe de NAVO-landen afhangen van de VS in termen van militaire uitgaven en bescherming in geval van een conflict met Rusland. 
 
@@ -23,7 +23,7 @@ Al deze visualisaties zouden interactief zijn, zodat gebruikers kunnen filteren 
 Na het bekijken van de data, hebben we besloten dat de visualisatie over NAVO vs Rusland niet nuttig is. 
 De NAVO-landen zonder VS hebben al meer militaire uitgaven dan Rusland, dus het vergelijken van de totale uitgaven van de NAVO zonder VS en met VS ten opzichte van Rusland zou niet veel inzicht geven.
 
-![NAVO storytelling](/logboek/images/NAVO_story.png)
+![NAVO storytelling](./images/NAVO_story.png)
 
 
 # 3: extra data toegevoegd
@@ -33,14 +33,14 @@ De NAVO-landen zonder VS hebben al meer militaire uitgaven dan Rusland, dus het 
 
 In de line chart, bar chart & wereldkaart kan de gebruiker nu ook filteren op deze extra data, om andere inzichten te krijgen over hoe de militaire uitgaven zich verhouden tot de bevolking, economie en totale uitgaven van elk land.
 
-![data types](/logboek/images/data_type_selector.png)
+![data types](./images/data_type_selector.png)
 
 
 # 4: nieuw idee voor de verhalende visualisatie
 Plot de uitgaven van 2 landen die in conflict zijn met elkaar: Rusland vs Oekraïne op een line chart, met een verticale lijn die aanduidt wanneer de oorlog begon.
 Op deze manier kunnen we zien of conflicten een invloed hebben op de militaire uitgaven van elk land.
 
-![conflict storytelling](/logboek/images/conflicts.png)
+![conflict storytelling](./images/conflicts.png)
 
 - Het initiële idee was om dit te doen voor meerdere conflicten, maar data was niet beschikbaar of volledig voor alle landen en conflicten, dus we hebben besloten om ons te richten op Rusland vs Oekraïne vanwege de recente aard van het conflict en de beschikbaarheid van data.
 
@@ -50,15 +50,15 @@ Een GDP-dataset, die het totale GDP van elk land per jaar toont, toegevoegd.
 Hierdoor kunnen we ook een **scatter plot** maken die de absolute militaire uitgaven van elk land toont in relatie tot hun GDP.
 Dit geeft een beeld van hoe groot de militaire uitgaven zijn in verhouding tot de totale economie van elk land.
 
-![scatter plot](/logboek/images/scatter_plot.png)
+![scatter plot](./images/scatter_plot.png)
 
 
 # 6: extra visualisaties toegevoegd
 - visualisatie die het huidige (2025) procent van het GDP dat elke lidstaat van de NAVO uitgeeft aan militaire uitgaven toont, ten opzichte van het NAVO doel van 5% tegen 2035
-![navo GDP](/logboek/images/navo_gdp.png)
+![navo GDP](./images/navo_gdp.png)
 
 - visualisatie die de top 5 landen toont met de hoogste militaire uitgaven door de jaren heen
-![top 5](/logboek/images/rank_plot.png)
+![top 5](./images/rank_plot.png)
 
 # 7: Uitbreiding van de data naar 2025
 - Elk jaar wordt de SIPRI Military Expenditure Database uitgebreid, tijdens het project werd de data van 2025 hier dus aan toegevoegd en werden sommige waarden van voorgaande jaren licht aangepast. Daarom hebben we dus onze datasets zelf ook hiermee uitgebreid, voor correctere en meer data.
