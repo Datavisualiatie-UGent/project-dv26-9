@@ -11,17 +11,20 @@ const formatValueOnTooltip = (value) => {
 export default function ConflictLinePlot({ data, startOfConflict, endOfConflict }) {
     return Plot.plot({
         y: {grid: true},
-        color: {legend: true},
         marginTop: 100,
         width: 750,
         height: 550,
+        symbol: {
+            legend: true,
+            range: ["circle", "square"]
+        },
         
         marks: [
             // Line plots
             Plot.lineY(data, {
                 x: "Year", 
                 y: "Military_expenditure",
-                stroke: "Entity"
+                stroke: "Entity",
             }),
 
             // Dots on the line plots
@@ -30,7 +33,8 @@ export default function ConflictLinePlot({ data, startOfConflict, endOfConflict 
                 y: "Military_expenditure", 
                 r: 2,
                 stroke: "Entity",
-                fill: "Entity"
+                fill: "Entity",
+                symbol: "Entity"
             }),
 
             // Interactive vertical line when moving cursor
